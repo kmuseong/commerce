@@ -1,6 +1,23 @@
+.header {
+    @apply p-3 flex gap-2;
+    background-color: rgb(242, 242, 242);
+    font-weight: bold;
+
+    svg {
+        cursor: pointer;
+    }
+}
+
 .layout {
-    @apply h-full p-5 flex flex-col gap-2;
+    @apply h-full flex flex-col gap-2;
     width: 600px;
+    margin: 0 auto;
+    border-right: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+}
+
+.form {
+    @apply w-full flex flex-col gap-3 p-4;
 }
 
 .login {

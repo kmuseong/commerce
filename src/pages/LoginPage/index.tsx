@@ -7,6 +7,8 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import supabase from '@/supabaseClient';
 import { useNavigate } from 'react-router-dom';
+import { ChevronLeft } from 'lucide-react';
+import { useMutation } from '@tanstack/react-query';
 
 interface LoginType {
     email: string;
@@ -34,7 +36,7 @@ export const LoginPage: React.FC = () => {
     const navigate = useNavigate();
 
     // 로그인 요청
-    const onSubmit = async (form: LoginType) => {
+    const onLogin = async (form: LoginType) => {
         const { error } = await supabase.auth.signInWithPassword({
             ...form,
         });
@@ -45,36 +47,62 @@ export const LoginPage: React.FC = () => {
         navigate('/');
     };
 
+    // useMutation 훅 설정
+    const { mutate, isPending } = useMutation({
+        mutationFn: onLogin,
+        onSuccess: () => {
+            console.log('회원가입 성공');
+        },
+        onError: (error: Error) => {
+            console.error('회원가입 실패:', error.message);
+        },
+    });
+
+    const onSubmit = (form: LoginType) => {
+        mutate(form);
+    };
+
+    if (isPending) {
+        return <div>로딩중...</div>;
+    }
+
     return (
-        <form className={classes.layout} onSubmit={handleSubmit(onSubmit)}>
-            <div>
-                <Input
-                    {...register('email')}
-                    placeholder="이메일"
-                    className={errors.email ? classes.inputError : ''}
-                    autoComplete="email"
-                />
-                {errors.email && <p className={classes.error}>{errors.email.message}</p>}
-            </div>
-            <div>
-                <Input
-                    {...register('password')}
-                    type="password"
-                    placeholder="비밀번호"
-                    className={errors.password ? classes.inputError : ''}
-                    autoComplete="current-password"
-                />
-                {errors.password && <p className={classes.error}>{errors.password.message}</p>}
-            </div>
-            <Button className={classes.login} type="submit">
+        <div className={classes.layout}>
+            <header className={classes.header}>
+                <ChevronLeft onClick={() => navigate(-1)} />
                 로그인
-            </Button>
-            <Button className={classes.google} type="button">
-                구글 로그인
-            </Button>
-            <Button className={classes.signup} type="button" onClick={() => navigate('/signup')}>
-                회원가입
-            </Button>
-        </form>
+            </header>
+
+            <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
+                <div>
+                    <Input
+                        {...register('email')}
+                        placeholder="이메일"
+                        className={errors.email ? classes.inputError : ''}
+                        autoComplete="email"
+                    />
+                    {errors.email && <p className={classes.error}>{errors.email.message}</p>}
+                </div>
+                <div>
+                    <Input
+                        {...register('password')}
+                        type="password"
+                        placeholder="비밀번호"
+                        className={errors.password ? classes.inputError : ''}
+                        autoComplete="current-password"
+                    />
+                    {errors.password && <p className={classes.error}>{errors.password.message}</p>}
+                </div>
+                <Button className={classes.login} type="submit">
+                    로그인
+                </Button>
+                <Button className={classes.google} type="button">
+                    Google
+                </Button>
+                <Button className={classes.signup} type="button" onClick={() => navigate('/signup')}>
+                    회원가입
+                </Button>
+            </form>
+        </div>
     );
 };
