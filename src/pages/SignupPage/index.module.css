@@ -1,6 +1,26 @@
+.header {
+    @apply p-3 flex gap-2;
+    background-color: rgb(242, 242, 242);
+    font-weight: bold;
+
+    svg {
+        cursor: pointer;
+    }
+}
+
 .layout {
-    @apply h-full p-5 flex flex-col gap-2;
-    width: 600px;
+    @apply w-full h-full flex flex-col gap-2;
+    margin: 0 auto;
+    border-right: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+
+    @media all and (min-width: 1024px) {
+        width: 600px;
+    }
+}
+
+.form {
+    @apply w-full flex flex-col gap-3 p-6;
 }
 
 .login {
@@ -17,4 +37,36 @@
     &:hover {
         @apply bg-slate-200;
     }
+}
+
+.error {
+    font-size: 12px;
+    color: red;
+}
+
+.inputError {
+    border-color: red;
+}
+
+.success {
+    @apply flex flex-col gap-3 p-5;
+    text-align: center;
+    padding: 50px;
+
+    h1 {
+        @apply flex gap-2 items-center justify-center;
+        font-size: 30px;
+        font-weight: bold;
+        padding-top: 50px;
+    }
+
+    svg {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+.title {
+    padding: 30px 0;
+    color: #666666;
 }
