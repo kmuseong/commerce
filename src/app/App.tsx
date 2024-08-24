@@ -1,8 +1,13 @@
-import Router from '@/app/routers/Router';
+import ReactQuery from '@/app/provider/ReactQuery';
+import Router from '@/app/provider/Router';
 import React from 'react';
 
 const App: React.FC = () => {
-    return <Router />;
+    return (
+        <ReactQuery>
+            <Router />
+        </ReactQuery>
+    );
 };
 
 export default App;
