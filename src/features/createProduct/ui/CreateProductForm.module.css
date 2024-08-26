@@ -1,0 +1,23 @@
+.form {
+    @apply h-full flex flex-col gap-4 p-5;
+}
+
+.select {
+    @apply flex flex-col gap-2;
+}
+
+.imgList {
+    @apply p-4;
+    border: 1px solid #ebebeb;
+    border-radius: 5px;
+    height: 120px;
+}
+
+.error {
+    font-size: 12px;
+    color: red;
+}
+
+.inputError {
+    border-color: red;
+}
