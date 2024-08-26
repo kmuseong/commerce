@@ -9,8 +9,12 @@ import { useNavigate } from 'react-router-dom';
 import classes from './LoginForm.module.css';
 import { schema } from '@/features/login/model/validation';
 import { onLogin } from '@/features/login/api/api';
+import { useAuthStore } from '@/shared/stores/auth/useAuthStore';
+import { User } from '@/shared/stores/auth/type';
 
 export const LoginForm: React.FC = () => {
+    const navigate = useNavigate();
+    const { setUser } = useAuthStore();
     const {
         register,
         formState: { errors },
@@ -23,16 +27,14 @@ export const LoginForm: React.FC = () => {
         },
     });
 
-    const navigate = useNavigate();
-
-    // useMutation 훅 설정
     const { mutate, isPending } = useMutation({
         mutationFn: onLogin,
-        onSuccess: () => {
-            console.log('회원가입 성공');
+        onSuccess: (res) => {
+            setUser(res as User);
+            navigate('/');
         },
         onError: (error: Error) => {
-            console.error('회원가입 실패:', error.message);
+            console.error('로그인 실패:', error.message);
         },
     });
 

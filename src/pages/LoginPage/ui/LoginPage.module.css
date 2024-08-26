@@ -9,9 +9,13 @@
 }
 
 .layout {
-    @apply h-full flex flex-col gap-2;
-    width: 600px;
+    @apply w-full min-h-screen flex flex-col gap-2;
+
     margin: 0 auto;
     border-right: 1px solid #ccc;
     border-left: 1px solid #ccc;
+
+    @media all and (min-width: 1024px) {
+        width: 600px;
+    }
 }
