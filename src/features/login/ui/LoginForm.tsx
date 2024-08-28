@@ -8,7 +8,7 @@ import { LoginType } from '@/features/login/model/type';
 import { useNavigate } from 'react-router-dom';
 import classes from './LoginForm.module.css';
 import { schema } from '@/features/login/model/validation';
-import { onLogin } from '@/features/login/api/api';
+import { googleLogin, onLogin } from '@/features/login/api/api';
 import { useAuthStore } from '@/shared/stores/auth/useAuthStore';
 import { User } from '@/shared/stores/auth/type';
 
@@ -38,11 +38,21 @@ export const LoginForm: React.FC = () => {
         },
     });
 
+    const { mutate: googleMutate, isPending: googlePending } = useMutation({
+        mutationFn: googleLogin,
+        onSuccess: () => {
+            console.log('구글 로그인 성공');
+        },
+        onError: (error: Error) => {
+            console.error('구글 로그인 실패:', error.message);
+        },
+    });
+
     const onSubmit = (form: LoginType) => {
         mutate(form);
     };
 
-    if (isPending) {
+    if (isPending || googlePending) {
         return <div>로딩중...</div>;
     }
 
@@ -70,7 +80,7 @@ export const LoginForm: React.FC = () => {
             <Button className={classes.login} type="submit">
                 로그인
             </Button>
-            <Button className={classes.google} type="button">
+            <Button className={classes.google} type="button" onClick={() => googleMutate()}>
                 Google
             </Button>
             <Button className={classes.signup} type="button" onClick={() => navigate('/signup')}>
