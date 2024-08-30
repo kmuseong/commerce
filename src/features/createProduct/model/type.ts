@@ -1,4 +1,4 @@
-export interface CreateFormType {
+export interface FormType {
     name: string;
     description: string;
     origin: string;
@@ -6,4 +6,9 @@ export interface CreateFormType {
     price: string;
     weight: string;
     stock_quantity: string;
+}
+
+export interface CreateFormType {
+    form: FormType;
+    images: File[];
 }

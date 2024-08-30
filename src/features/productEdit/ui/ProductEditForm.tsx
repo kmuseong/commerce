@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import classes from './ProductEditForm.module.css';
 import { Button } from '@/shared/components/ui/button';
 import { Input } from '@/shared/components/ui/input';
@@ -16,18 +16,24 @@ import {
 import { Checkbox } from '@/shared/components/ui/checkbox';
 import { Textarea } from '@/shared/components/ui/textarea';
 import { useAuthStore } from '@/shared/stores/auth/useAuthStore';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { schema } from '@/features/createProduct/model/validation';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getProduct, updateProduct } from '@/features/productEdit/api/api';
 import { ProductType, UpdateFormType, UpdateFrormProps } from '@/features/productEdit/model/type';
+import { Image, Trash2 } from 'lucide-react';
 
 export const ProductEditForm: React.FC = () => {
     const [originCheck, setOriginCheck] = useState(false);
     const [beanTypeCheck, setBeanTypeCheck] = useState(false);
+    const queryClient = useQueryClient();
     const navigate = useNavigate();
     const { id } = useParams<string>();
     const { user } = useAuthStore();
+
+    const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+    const [previews, setPreviews] = useState<string[]>([]);
+    const inputRef = useRef<HTMLInputElement | null>(null);
 
     const { data, isLoading } = useQuery<ProductType, Error>({
         queryKey: ['getProduct', id],
@@ -47,15 +53,56 @@ export const ProductEditForm: React.FC = () => {
 
     const { mutate, isPending } = useMutation<ProductType | null, Error, UpdateFrormProps>({
         mutationKey: ['updateProduct', id],
-        mutationFn: ({ id, form }) => updateProduct(id, form),
+        mutationFn: ({ id, form, images }) => updateProduct(id, form, images),
         onSuccess: (response) => {
+            queryClient.invalidateQueries({
+                queryKey: ['getProduct', id],
+            });
             navigate(`/product/${response?.id}`);
         },
     });
 
     const onSubmit = (form: UpdateFormType) => {
         const newList = { ...form, user_id: user?.id };
-        mutate({ id: id!, form: newList });
+        mutate({ id: id!, form: newList, images: selectedFiles });
+    };
+
+    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const files = Array.from(event.target.files || []);
+
+        if (files.length === 0) {
+            return;
+        }
+
+        if (selectedFiles.length + files.length > 4) {
+            return console.log('4개 이상 불가능');
+        }
+
+        const upateList = [...selectedFiles, ...files];
+        setSelectedFiles(upateList);
+
+        // 파일 미리보기 생성
+        const newPreviews: string[] = [];
+        upateList.forEach((file) => {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                newPreviews.push(reader.result as string);
+                // 모든 파일의 미리보기가 생성되면 상태 업데이트
+                if (newPreviews.length === upateList.length) {
+                    setPreviews(newPreviews);
+                }
+            };
+            reader.readAsDataURL(file);
+        });
+    };
+
+    const handleRemoveImage = (index: number) => {
+        setPreviews((prevPreviews) => prevPreviews.filter((_, i) => i !== index));
+        setSelectedFiles((prevFiles) => prevFiles.filter((_, i) => i !== index));
+
+        if (inputRef.current) {
+            inputRef.current.value = '';
+        }
     };
 
     useEffect(() => {
@@ -69,6 +116,9 @@ export const ProductEditForm: React.FC = () => {
                 weight: data.weight,
                 stock_quantity: String(data.stock_quantity),
             });
+
+            setPreviews(data.product_images.map((img) => img.image_url));
+            setSelectedFiles(data.product_images.map((img) => new File([], img.image_url)));
         }
     }, [data, reset]);
 
@@ -259,10 +309,39 @@ export const ProductEditForm: React.FC = () => {
                 {errors.stock_quantity && <p className={classes.error}>{errors.stock_quantity.message}</p>}
             </div>
 
-            <div className={classes.imgList}></div>
+            <div className={classes.imgList}>
+                {previews.length > 0 && (
+                    <ul className="flex gap-5">
+                        {previews.map((src, index) => (
+                            <li key={index} className={classes.selectImg}>
+                                <img
+                                    src={src}
+                                    alt={`Selected file ${index + 1}`}
+                                    style={{ width: '100px', height: '100px', objectFit: 'cover' }}
+                                />
+                                <div className={classes.remove}>
+                                    <Trash2 onClick={() => handleRemoveImage(index)} />
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
+                )}
+            </div>
 
-            <div className="grid w-full items-center gap-1.5">
-                <Input id="picture" type="file" />
+            <div className="flex w-full items-center gap-3">
+                <label htmlFor="picture">
+                    <Image />
+                </label>
+                <input
+                    className="hidden"
+                    ref={inputRef}
+                    id="picture"
+                    type="file"
+                    multiple
+                    accept="image/*"
+                    onChange={handleFileChange}
+                />
+                <div>선택한 이미지: {selectedFiles.length}</div>
             </div>
 
             <Button className={classes.signup} type="submit">

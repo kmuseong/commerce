@@ -5,19 +5,23 @@ import Autoplay from 'embla-carousel-autoplay';
 import React from 'react';
 import { Carousel, CarouselContent, CarouselItem } from '@/shared/components/ui/carousel';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/components/ui/tabs';
-import { ProductType } from '@/features/productDetail/model/type';
+import { ProductImageType, ProductType } from '@/features/productDetail/model/type';
+import { Card, CardDescription, CardHeader, CardTitle, CardContent } from '@/shared/components/ui/card';
+import classes from './ProductDetailForm.module.css';
 
 export const ProductDetailForm: React.FC = () => {
     const { id } = useParams<string>();
     const plugin = React.useRef(Autoplay({ delay: 2000, stopOnInteraction: true }));
+
+    const changePrice = (price: number) => {
+        return price.toLocaleString('ko-KR');
+    };
 
     const { data, isLoading } = useQuery<ProductType, Error>({
         queryKey: ['getProduct', id],
         queryFn: () => getProduct(id!),
         enabled: !!id,
     });
-
-    console.log(data);
 
     if (isLoading) {
         return <div>로딩중...</div>;
@@ -32,20 +36,22 @@ export const ProductDetailForm: React.FC = () => {
                 onMouseLeave={plugin.current.reset}
             >
                 <CarouselContent>
-                    {Array.from({ length: 5 }).map((_, index) => (
-                        <CarouselItem key={index}>
-                            <div className="p-1 w-full h-screen ">
-                                <span className="text-4xl font-semibold">{index + 1}</span>
+                    {data?.product_images.map((item: ProductImageType) => (
+                        <CarouselItem key={item.id}>
+                            <div className="w-full">
+                                <img className={classes.image} src={item.image_url} />
                             </div>
                         </CarouselItem>
                     ))}
                 </CarouselContent>
             </Carousel>
 
-            <div>
-                <div>{data?.name}</div>
-                <div>{data?.price}</div>
-            </div>
+            <Card>
+                <CardHeader>
+                    <div>{data?.name}</div>
+                    <CardTitle>{changePrice(Number(data?.price))}원</CardTitle>
+                </CardHeader>
+            </Card>
 
             <Tabs defaultValue="info" className="w-full">
                 <TabsList className="w-full">
@@ -57,11 +63,13 @@ export const ProductDetailForm: React.FC = () => {
                     </TabsTrigger>
                 </TabsList>
                 <TabsContent value="info">
-                    <div>{data?.description}</div>
-                    <div>{data?.origin}</div>
-                    <div>{data?.stock_quantity}</div>
-                    <div>{data?.bean_type}</div>
-                    <div>{data?.weight}</div>
+                    <CardContent className="grid w-full items-center gap-4">
+                        <div>원산지: {data?.origin}</div>
+                        <div>수량: {data?.stock_quantity}</div>
+                        <div>원두선택: {data?.bean_type}</div>
+                        <div>무게: {data?.weight}</div>
+                        <CardDescription>설명: {data?.description}</CardDescription>
+                    </CardContent>
                 </TabsContent>
                 <TabsContent value="review">Change your password here.</TabsContent>
             </Tabs>

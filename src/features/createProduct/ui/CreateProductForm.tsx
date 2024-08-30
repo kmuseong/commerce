@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import classes from './createProductForm.module.css';
 import { Button } from '@/shared/components/ui/button';
 import { Input } from '@/shared/components/ui/input';
@@ -17,10 +17,11 @@ import { Checkbox } from '@/shared/components/ui/checkbox';
 import { Textarea } from '@/shared/components/ui/textarea';
 import { useAuthStore } from '@/shared/stores/auth/useAuthStore';
 import { useMutation } from '@tanstack/react-query';
-import { CreateFormType } from '@/features/createProduct/model/type';
+import { FormType } from '@/features/createProduct/model/type';
 import { onAddProduct } from '@/features/createProduct/api/api';
 import { schema } from '@/features/createProduct/model/validation';
 import { useNavigate } from 'react-router-dom';
+import { Image, Trash2 } from 'lucide-react';
 
 export const CreateProductForm: React.FC = () => {
     const {
@@ -29,7 +30,7 @@ export const CreateProductForm: React.FC = () => {
         handleSubmit,
         control,
         trigger,
-    } = useForm<CreateFormType>({
+    } = useForm<FormType>({
         resolver: zodResolver(schema),
         defaultValues: {
             name: '',
@@ -43,6 +44,12 @@ export const CreateProductForm: React.FC = () => {
     });
     const [originCheck, setOriginCheck] = useState(false);
     const [beanTypeCheck, setBeanTypeCheck] = useState(false);
+    const inputRef = useRef<HTMLInputElement | null>(null);
+
+    // 이미지 상태 관리
+    const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+    const [previews, setPreviews] = useState<string[]>([]);
+
     const navigate = useNavigate();
     const { user } = useAuthStore();
 
@@ -54,9 +61,49 @@ export const CreateProductForm: React.FC = () => {
         },
     });
 
-    const onSubmit = (form: CreateFormType) => {
+    const onSubmit = (form: FormType) => {
         const newList = { ...form, user_id: user?.id };
-        mutate(newList);
+        mutate({ form: newList, images: selectedFiles });
+    };
+
+    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const files = Array.from(event.target.files || []);
+
+        if (files.length === 0) {
+            return;
+        }
+
+        // 파일 개수 체크
+        if (files.length > 4) {
+            alert('You can only select up to 4 images.');
+            return;
+        }
+
+        // 선택된 파일을 상태로 설정 (기존 상태 초기화)
+        setSelectedFiles(files);
+
+        // 파일 미리보기 생성
+        const newPreviews: string[] = [];
+        files.forEach((file) => {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                newPreviews.push(reader.result as string);
+                // 모든 파일의 미리보기가 생성되면 상태 업데이트
+                if (newPreviews.length === files.length) {
+                    setPreviews(newPreviews);
+                }
+            };
+            reader.readAsDataURL(file);
+        });
+    };
+
+    const handleRemoveImage = (index: number) => {
+        setPreviews((prevPreviews) => prevPreviews.filter((_, i) => i !== index));
+        setSelectedFiles((prevFiles) => prevFiles.filter((_, i) => i !== index));
+
+        if (inputRef.current) {
+            inputRef.current.value = '';
+        }
     };
 
     if (isPending) {
@@ -239,10 +286,39 @@ export const CreateProductForm: React.FC = () => {
                 {errors.stock_quantity && <p className={classes.error}>{errors.stock_quantity.message}</p>}
             </div>
 
-            <div className={classes.imgList}></div>
+            <div className={classes.imgList}>
+                {previews.length > 0 && (
+                    <ul className="flex gap-5">
+                        {previews.map((src, index) => (
+                            <li key={index} className={classes.selectImg}>
+                                <img
+                                    src={src}
+                                    alt={`Selected file ${index + 1}`}
+                                    style={{ width: '100px', height: '100px', objectFit: 'cover' }}
+                                />
+                                <div className={classes.remove}>
+                                    <Trash2 onClick={() => handleRemoveImage(index)} />
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
+                )}
+            </div>
 
-            <div className="grid w-full items-center gap-1.5">
-                <Input id="picture" type="file" />
+            <div className="flex w-full items-center gap-3">
+                <label htmlFor="picture">
+                    <Image />
+                </label>
+                <input
+                    className="hidden"
+                    ref={inputRef}
+                    id="picture"
+                    type="file"
+                    multiple
+                    accept="image/*"
+                    onChange={handleFileChange}
+                />
+                <div>선택한 이미지: {selectedFiles.length}</div>
             </div>
 
             <Button className={classes.signup} type="submit">

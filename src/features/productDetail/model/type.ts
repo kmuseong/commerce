@@ -6,4 +6,10 @@ export interface ProductType {
     price: string;
     weight: string;
     stock_quantity: string;
+    product_images: ProductImageType[];
+}
+
+export interface ProductImageType {
+    id: number;
+    image_url: string;
 }
