@@ -10,7 +10,7 @@
     @apply p-4;
     border: 1px solid #ebebeb;
     border-radius: 5px;
-    height: 120px;
+    min-height: 120px;
 }
 
 .error {
@@ -20,4 +20,26 @@
 
 .inputError {
     border-color: red;
+}
+
+.selectImg {
+    @apply relative;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.selectImg:hover .remove {
+    opacity: 1;
+}
+
+.remove {
+    @apply flex justify-center items-center w-full h-full absolute top-0 left-0;
+    background-color: rgba(0, 0, 0, 0.7);
+    opacity: 0;
+
+    svg {
+        cursor: pointer;
+        color: rgb(229, 229, 229);
+    }
 }
