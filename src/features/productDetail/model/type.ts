@@ -1,3 +1,7 @@
+export interface ProductDetailProps {
+    data: ProductType;
+}
+
 export interface ProductType {
     name: string;
     description: string;

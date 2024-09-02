@@ -1,31 +1,17 @@
-import { getProduct } from '@/features/productDetail/api/api';
-import { useQuery } from '@tanstack/react-query';
-import { useParams } from 'react-router-dom';
 import Autoplay from 'embla-carousel-autoplay';
 import React from 'react';
 import { Carousel, CarouselContent, CarouselItem } from '@/shared/components/ui/carousel';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/components/ui/tabs';
-import { ProductImageType, ProductType } from '@/features/productDetail/model/type';
+import { ProductDetailProps, ProductImageType } from '@/features/productDetail/model/type';
 import { Card, CardDescription, CardHeader, CardTitle, CardContent } from '@/shared/components/ui/card';
 import classes from './ProductDetailForm.module.css';
 
-export const ProductDetailForm: React.FC = () => {
-    const { id } = useParams<string>();
+export const ProductDetailForm: React.FC<ProductDetailProps> = ({ data }) => {
     const plugin = React.useRef(Autoplay({ delay: 2000, stopOnInteraction: true }));
 
     const changePrice = (price: number) => {
         return price.toLocaleString('ko-KR');
     };
-
-    const { data, isLoading } = useQuery<ProductType, Error>({
-        queryKey: ['getProduct', id],
-        queryFn: () => getProduct(id!),
-        enabled: !!id,
-    });
-
-    if (isLoading) {
-        return <div>로딩중...</div>;
-    }
 
     return (
         <div className="h-full flex-1">
@@ -63,7 +49,7 @@ export const ProductDetailForm: React.FC = () => {
                     </TabsTrigger>
                 </TabsList>
                 <TabsContent value="info">
-                    <CardContent className="grid w-full items-center gap-4">
+                    <CardContent className="p-4 grid w-full items-center gap-4">
                         <div>원산지: {data?.origin}</div>
                         <div>수량: {data?.stock_quantity}</div>
                         <div>원두선택: {data?.bean_type}</div>
