@@ -1,34 +1,9 @@
-.header {
-    @apply w-full p-3 flex gap-2 fixed z-10 justify-between;
-    background-color: rgb(242, 242, 242);
-    font-weight: bold;
-
-    svg {
-        cursor: pointer;
-    }
-
-    @media all and (min-width: 1024px) {
-        width: 599px;
-    }
+.nav {
+    @apply flex justify-between;
 }
 
 .list {
     @apply flex gap-4;
-}
-
-.space {
-    height: 48px;
-}
-
-.layout {
-    @apply w-full flex flex-col;
-    margin: 0 auto;
-    border-right: 1px solid #ccc;
-    border-left: 1px solid #ccc;
-
-    @media all and (min-width: 1024px) {
-        width: 600px;
-    }
 }
 
 .modal {
@@ -42,9 +17,9 @@
 .footer {
     @apply w-full flex gap-3 p-3 fixed bottom-0;
     background-color: white;
-    border-top: 1px solid #ccc;
+    border-top: 1px solid #8a8a8a1a;
 
     @media all and (min-width: 1024px) {
-        width: 598px;
+        width: 600px;
     }
 }

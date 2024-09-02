@@ -5,8 +5,8 @@ import { Button } from '@/shared/components/ui/button';
 import { useAuthStore } from '@/shared/stores/auth/useAuthStore';
 import { ChevronLeft, Search, Home, ShoppingBag } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useMutation } from '@tanstack/react-query';
-import { onDeleteProduct } from '@/pages/ProductDetailPage/api/api';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { getProduct, onDeleteProduct } from '@/pages/ProductDetailPage/api/api';
 import {
     AlertDialog,
     AlertDialogAction,
@@ -18,11 +18,18 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from '@/shared/components/ui/alert-dialog';
+import { Header } from '@/widgets/header/ui/Header';
+import { BuyProduct } from '@/features/buyProduct';
 
 export const ProductDetailPage: React.FC = () => {
     const { user } = useAuthStore();
     const navigate = useNavigate();
     const { id } = useParams<string>();
+
+    const { data, isLoading: getLoading } = useQuery({
+        queryKey: ['getProduct'],
+        queryFn: () => getProduct(id!),
+    });
 
     const { mutate, isPending } = useMutation({
         mutationKey: ['deleteProduct', id],
@@ -36,24 +43,29 @@ export const ProductDetailPage: React.FC = () => {
         },
     });
 
+    if (getLoading) {
+        return <div>값 불러오는중...</div>;
+    }
+
     if (isPending) {
         return <div>삭제중...</div>;
     }
 
     return (
-        <div className={classes.layout}>
-            <header className={classes.header}>
-                <ChevronLeft onClick={() => navigate(-1)} />
+        <>
+            <Header>
+                <div className={classes.nav}>
+                    <ChevronLeft onClick={() => navigate(-1)} />
 
-                <div className={classes.list}>
-                    <Search />
-                    <Home onClick={() => navigate('/')} />
-                    <ShoppingBag />
+                    <div className={classes.list}>
+                        <Search />
+                        <Home onClick={() => navigate('/')} />
+                        <ShoppingBag />
+                    </div>
                 </div>
-            </header>
-            <div className={classes.space} />
+            </Header>
 
-            <ProductDetailForm />
+            <ProductDetailForm data={data!} />
 
             <div className="h-16" />
             <div className={classes.footer}>
@@ -84,9 +96,9 @@ export const ProductDetailPage: React.FC = () => {
                         </AlertDialog>
                     </>
                 ) : (
-                    <Button className="w-full">구매하기</Button>
+                    <BuyProduct price={data?.price as string} />
                 )}
             </div>
-        </div>
+        </>
     );
 };
