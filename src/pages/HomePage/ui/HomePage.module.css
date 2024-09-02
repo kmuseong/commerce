@@ -1,30 +1,5 @@
-.layout {
-    @apply w-full h-full flex flex-col gap-2;
-    margin: 0 auto;
-    border-right: 1px solid #ccc;
-    border-left: 1px solid #ccc;
-
-    @media all and (min-width: 1024px) {
-        width: 600px;
-    }
-}
-
-.header {
-    @apply w-full fixed p-3 flex flex-col gap-2;
-    background-color: rgb(242, 242, 242);
-    font-weight: bold;
-
-    svg {
-        cursor: pointer;
-    }
-
-    @media all and (min-width: 1024px) {
-        width: 599px;
-    }
-}
-
 .space {
-    @apply h-24;
+    @apply w-full h-24;
 }
 
 .headerNav {
@@ -40,11 +15,19 @@
     background-color: rgb(242, 242, 242);
 
     svg {
-        cursor: pointer;
         color: #7d7d7d;
     }
 
     @media all and (min-width: 1024px) {
         width: 600px;
+    }
+}
+
+.navButton {
+    @apply flex flex-col gap-1 justify-center items-center;
+    cursor: pointer;
+
+    div {
+        font-size: 10px;
     }
 }
