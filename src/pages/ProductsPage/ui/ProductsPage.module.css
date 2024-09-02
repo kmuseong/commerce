@@ -1,0 +1,29 @@
+.headerNav {
+    @apply flex justify-between;
+}
+
+.search {
+    @apply flex items-center gap-3;
+}
+
+.footerNav {
+    @apply w-full p-3 fixed bottom-0 flex justify-around;
+    background-color: rgb(242, 242, 242);
+
+    svg {
+        color: #7d7d7d;
+    }
+
+    @media all and (min-width: 1024px) {
+        width: 600px;
+    }
+}
+
+.navButton {
+    @apply flex flex-col gap-1 justify-center items-center;
+    cursor: pointer;
+
+    div {
+        font-size: 10px;
+    }
+}

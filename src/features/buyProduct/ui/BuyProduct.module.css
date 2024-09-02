@@ -1,0 +1,10 @@
+.drawer {
+    @apply w-full left-0;
+
+    @media all and (min-width: 1024px) {
+        width: 600px;
+        margin-top: -300px; /* 요소 높이의 절반 */
+        margin-left: -300px; /* 요소 너비의 절반 */
+        left: 50%;
+    }
+}

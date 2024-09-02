@@ -1,0 +1,24 @@
+.title {
+    @apply flex justify-between p-3;
+}
+
+.info {
+    @apply flex flex-col gap-4 p-2 justify-between;
+}
+
+.card {
+    @apply cursor-pointer flex flex-col;
+}
+
+.name {
+    @apply font-bold text-sm line-clamp-2;
+}
+
+.price {
+    @apply font-bold text-sm;
+}
+
+.image {
+    @apply object-cover flex-1;
+    height: 200px;
+}

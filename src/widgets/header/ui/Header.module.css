@@ -1,0 +1,13 @@
+.header {
+    @apply w-full fixed p-3 flex flex-col gap-2 z-10;
+    background-color: rgb(242, 242, 242);
+    font-weight: bold;
+
+    svg {
+        cursor: pointer;
+    }
+
+    @media all and (min-width: 1024px) {
+        width: 600px;
+    }
+}
