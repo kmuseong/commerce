@@ -1,0 +1,14 @@
+.all {
+    @apply flex items-center space-x-2 p-4;
+
+    border-bottom: 1px solid #ededed;
+}
+
+.list {
+    @apply flex flex-col gap-3;
+}
+
+.item {
+    @apply flex flex-col gap-4 p-4;
+    border-bottom: 1px solid #ededed;
+}
