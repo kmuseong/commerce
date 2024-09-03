@@ -3,6 +3,7 @@ export interface ProductDetailProps {
 }
 
 export interface ProductType {
+    id: number;
     name: string;
     description: string;
     origin: string;

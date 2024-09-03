@@ -60,7 +60,7 @@ export const ProductDetailPage: React.FC = () => {
                     <div className={classes.list}>
                         <Search />
                         <Home onClick={() => navigate('/')} />
-                        <ShoppingBag />
+                        <ShoppingBag onClick={() => navigate('/cart')} />
                     </div>
                 </div>
             </Header>
@@ -96,7 +96,7 @@ export const ProductDetailPage: React.FC = () => {
                         </AlertDialog>
                     </>
                 ) : (
-                    <BuyProduct price={data?.price as string} />
+                    <BuyProduct price={data?.price as string} id={data?.id as number} />
                 )}
             </div>
         </>
