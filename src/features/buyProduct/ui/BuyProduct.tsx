@@ -12,11 +12,30 @@ import {
 import { Button } from '@/shared/components/ui/button';
 import { Minus, Plus } from 'lucide-react';
 import classes from './BuyProduct.module.css';
-import { BuyProductProps } from '@/features/buyProduct/model/type';
+import { AddCartProps, BuyProductProps } from '@/features/buyProduct/model/type';
 import { changePrice } from '@/shared/lib/utils';
+import { useMutation } from '@tanstack/react-query';
+import { addCart } from '@/features/buyProduct/api/api';
+import { useAuthStore } from '@/shared/stores/auth/useAuthStore';
 
-export const BuyProduct: React.FC<BuyProductProps> = ({ price }) => {
+export const BuyProduct: React.FC<BuyProductProps> = ({ price, id }) => {
     const [count, setCount] = useState(1);
+    const { user } = useAuthStore();
+
+    const { mutate, isPending: cartLoading } = useMutation({
+        mutationKey: ['addCart'],
+        mutationFn: ({ userId, productId, count }: AddCartProps) => addCart({ userId, productId, count }),
+        onSuccess: (data) => {
+            console.log('장바구니 추가 성공', { data });
+        },
+        onError: (error) => {
+            console.log('장바구니 추가 실패', { error });
+        },
+    });
+
+    if (cartLoading) {
+        return <div>장바구니 추가중...</div>;
+    }
 
     return (
         <Drawer>
@@ -61,7 +80,11 @@ export const BuyProduct: React.FC<BuyProductProps> = ({ price }) => {
                     </div>
                     <DrawerFooter>
                         <DrawerClose asChild>
-                            <Button className="w-full" variant="outline">
+                            <Button
+                                className="w-full"
+                                variant="outline"
+                                onClick={() => mutate({ userId: user?.id as string, productId: id as number, count })}
+                            >
                                 장바구니
                             </Button>
                         </DrawerClose>
