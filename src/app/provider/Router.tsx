@@ -10,6 +10,7 @@ import { ProductEditPage } from '@/pages/ProductEditPage';
 import { ProfilePage } from '@/pages/ProfilePage';
 import { Layout } from '@/widgets/layout';
 import { ProductsPage } from '@/pages/ProductsPage';
+import { CartPage } from '@/pages/CartPage';
 
 const Router: React.FC = () => {
     return (
@@ -30,6 +31,9 @@ const Router: React.FC = () => {
 
                     {/** 제품리스트 */}
                     <Route path="/products" element={<ProductsPage />} />
+
+                    {/** 장바구니 */}
+                    <Route path="/cart" element={<CartPage />} />
                 </Routes>
             </Layout>
         </BrowserRouter>
