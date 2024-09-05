@@ -40,12 +40,14 @@ export const CartPage: React.FC = () => {
         }
     };
 
+    console.log(data);
+
     useEffect(() => {
         if (data) {
             const calculatedTotalPrice = data
                 .filter((item) => selectedItems.includes(item.id))
                 .reduce((sum, item) => {
-                    return sum + parseFloat(item.products.price) * item.count;
+                    return sum + parseFloat(item.products.price) * item.quantity;
                 }, 0);
 
             setTotalPrice(calculatedTotalPrice);
@@ -67,7 +69,7 @@ export const CartPage: React.FC = () => {
 
                     <Home onClick={() => navigate('/')} />
                 </div>
-                <div className="mt-5 font-normal">전체: {data?.length}</div>
+                <div className="mt-5 font-normal">전체 {data?.length}</div>
             </Header>
             <main>
                 <CartForm

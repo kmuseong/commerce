@@ -17,6 +17,7 @@ import { Checkbox } from '@/shared/components/ui/checkbox';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import classes from './CartForm.module.css';
 import { changePrice } from '@/shared/lib/utils';
+import { EditCartButton } from '@/features/editCartButton';
 
 export const CartForm: React.FC<CartFormProps> = ({
     data,
@@ -41,6 +42,8 @@ export const CartForm: React.FC<CartFormProps> = ({
         return <div>상품삭제중...</div>;
     }
 
+    console.log(data);
+
     return (
         <div className="flex flex-col gap-4">
             <div className={classes.all}>
@@ -54,7 +57,7 @@ export const CartForm: React.FC<CartFormProps> = ({
             </div>
 
             <ul className={classes.list}>
-                {data?.map(({ id, products, count }: CartProps) => {
+                {data?.map(({ id, products, quantity, roasting, grind }: CartProps) => {
                     const isSelected = selectedItems.includes(id);
                     return (
                         <li key={id} className={classes.item}>
@@ -79,14 +82,15 @@ export const CartForm: React.FC<CartFormProps> = ({
                                 <div className="flex flex-col gap-2">
                                     <div>{products.name}</div>
                                     <div>{changePrice(Number(products.price))}원</div>
-                                    <div>수량: {count}개</div>
+                                    <div>
+                                        옵션: {roasting}, {grind}
+                                    </div>
+                                    <div>수량: {quantity}개</div>
                                 </div>
                             </div>
 
                             <div className="flex gap-2">
-                                <Button variant="outline" className="w-full">
-                                    옵션변경
-                                </Button>
+                                <EditCartButton price={products.price} id={id} />
 
                                 <AlertDialog>
                                     <AlertDialogTrigger asChild>
