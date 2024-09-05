@@ -20,8 +20,8 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { schema } from '@/features/createProduct/model/validation';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getProduct, updateProduct } from '@/features/productEdit/api/api';
-import { ProductType, UpdateFormType, UpdateFrormProps } from '@/features/productEdit/model/type';
 import { Image, Trash2 } from 'lucide-react';
+import { ProductFormType, ProductType, UpdateFrormProps } from '@/entities/product/type';
 
 export const ProductEditForm: React.FC = () => {
     const [originCheck, setOriginCheck] = useState(false);
@@ -47,7 +47,7 @@ export const ProductEditForm: React.FC = () => {
         control,
         reset,
         trigger,
-    } = useForm<UpdateFormType>({
+    } = useForm<ProductType>({
         resolver: zodResolver(schema),
     });
 
@@ -62,7 +62,7 @@ export const ProductEditForm: React.FC = () => {
         },
     });
 
-    const onSubmit = (form: UpdateFormType) => {
+    const onSubmit = (form: ProductFormType) => {
         const newList = { ...form, user_id: user?.id };
         mutate({ id: id!, form: newList, images: selectedFiles });
     };

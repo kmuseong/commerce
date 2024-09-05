@@ -1,4 +1,4 @@
-import { ProductType } from '@/pages/ProductDetailPage/model/type';
+import { ProductType } from '@/entities/product/type';
 import supabase from '@/supabaseClient';
 
 export const getProduct = async (id: string) => {

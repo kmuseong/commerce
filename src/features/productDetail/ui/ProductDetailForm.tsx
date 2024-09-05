@@ -2,9 +2,10 @@ import Autoplay from 'embla-carousel-autoplay';
 import React from 'react';
 import { Carousel, CarouselContent, CarouselItem } from '@/shared/components/ui/carousel';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/components/ui/tabs';
-import { ProductDetailProps, ProductImageType } from '@/features/productDetail/model/type';
+import { ProductDetailProps } from '@/features/productDetail/model/type';
 import { Card, CardDescription, CardHeader, CardTitle, CardContent } from '@/shared/components/ui/card';
 import classes from './ProductDetailForm.module.css';
+import { ProductImageType } from '@/entities/product/type';
 
 export const ProductDetailForm: React.FC<ProductDetailProps> = ({ data }) => {
     const plugin = React.useRef(Autoplay({ delay: 2000, stopOnInteraction: true }));

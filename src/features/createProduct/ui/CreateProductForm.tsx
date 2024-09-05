@@ -17,11 +17,11 @@ import { Checkbox } from '@/shared/components/ui/checkbox';
 import { Textarea } from '@/shared/components/ui/textarea';
 import { useAuthStore } from '@/shared/stores/auth/useAuthStore';
 import { useMutation } from '@tanstack/react-query';
-import { FormType } from '@/features/createProduct/model/type';
 import { onAddProduct } from '@/features/createProduct/api/api';
 import { schema } from '@/features/createProduct/model/validation';
 import { useNavigate } from 'react-router-dom';
 import { Image, Trash2 } from 'lucide-react';
+import { ProductFormType } from '@/entities/product/type';
 
 export const CreateProductForm: React.FC = () => {
     const {
@@ -30,7 +30,7 @@ export const CreateProductForm: React.FC = () => {
         handleSubmit,
         control,
         trigger,
-    } = useForm<FormType>({
+    } = useForm<ProductFormType>({
         resolver: zodResolver(schema),
         defaultValues: {
             name: '',
@@ -61,7 +61,7 @@ export const CreateProductForm: React.FC = () => {
         },
     });
 
-    const onSubmit = (form: FormType) => {
+    const onSubmit = (form: ProductFormType) => {
         const newList = { ...form, user_id: user?.id };
         mutate({ form: newList, images: selectedFiles });
     };

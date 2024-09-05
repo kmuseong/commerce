@@ -12,7 +12,7 @@ import {
 import { Button } from '@/shared/components/ui/button';
 import { Minus, Plus } from 'lucide-react';
 import classes from './BuyProduct.module.css';
-import { AddCartProps, BuyProductProps, useBuyProductFormType } from '@/features/buyProduct/model/type';
+import { BuyProductProps, useBuyProductFormType } from '@/features/buyProduct/model/type';
 import { changePrice } from '@/shared/lib/utils';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { addCart } from '@/features/buyProduct/api/api';
@@ -27,6 +27,7 @@ import {
 } from '@/shared/components/ui/select';
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/shared/components/ui/form';
 import { useBuyProductForm } from '@/features/buyProduct/model/validation';
+import { CartFormProps } from '@/entities/cart/type';
 
 export const BuyProduct: React.FC<BuyProductProps> = ({ price, id }) => {
     const { user } = useAuthStore();
@@ -35,7 +36,7 @@ export const BuyProduct: React.FC<BuyProductProps> = ({ price, id }) => {
 
     const { mutate, isPending: cartLoading } = useMutation({
         mutationKey: ['addCart'],
-        mutationFn: ({ userId, productId, option }: AddCartProps) => addCart({ userId, productId, option }),
+        mutationFn: ({ userId, productId, option }: CartFormProps) => addCart({ userId, productId, option }),
         onSuccess: () => {
             queryClient.invalidateQueries({
                 queryKey: ['getCarts'],
