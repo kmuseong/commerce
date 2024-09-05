@@ -1,0 +1,12 @@
+.container {
+    @apply relative;
+}
+
+.count {
+    @apply absolute w-4 h-4 top-0 right-0 flex items-center justify-center;
+    border-radius: 50%;
+    background-color: red;
+    color: white;
+    font-size: 11px;
+    transform: translate(45%, -45%);
+}
