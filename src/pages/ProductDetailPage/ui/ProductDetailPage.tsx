@@ -3,7 +3,7 @@ import React from 'react';
 import classes from './ProductDetailPage.module.css';
 import { Button } from '@/shared/components/ui/button';
 import { useAuthStore } from '@/shared/stores/auth/useAuthStore';
-import { ChevronLeft, Search, Home, ShoppingBag } from 'lucide-react';
+import { ChevronLeft, Search, Home } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { getProduct, onDeleteProduct } from '@/pages/ProductDetailPage/api/api';
@@ -20,6 +20,7 @@ import {
 } from '@/shared/components/ui/alert-dialog';
 import { Header } from '@/widgets/header/ui/Header';
 import { BuyProduct } from '@/features/buyProduct';
+import { CartIcon } from '@/widgets/cartIcon';
 
 export const ProductDetailPage: React.FC = () => {
     const { user } = useAuthStore();
@@ -60,7 +61,7 @@ export const ProductDetailPage: React.FC = () => {
                     <div className={classes.list}>
                         <Search />
                         <Home onClick={() => navigate('/')} />
-                        <ShoppingBag onClick={() => navigate('/cart')} />
+                        <CartIcon />
                     </div>
                 </div>
             </Header>

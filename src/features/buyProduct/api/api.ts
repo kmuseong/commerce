@@ -1,16 +1,17 @@
 import { AddCartProps } from '@/features/buyProduct/model/type';
 import supabase from '@/supabaseClient';
 
-export const addCart = async ({ userId, productId, count }: AddCartProps) => {
-    try {
-        const { data } = await supabase
-            .from('carts')
-            .insert([{ user_id: userId, product_id: productId, count }])
-            .select();
+export const addCart = async ({ userId, productId, option }: AddCartProps) => {
+    console.log(option);
 
-        console.log({ data });
-        return data;
-    } catch (error) {
-        console.log({ error });
+    const { data, error } = await supabase
+        .from('carts')
+        .insert([{ user_id: userId, product_id: productId, ...option }])
+        .select();
+
+    if (error) {
+        throw new Error(error.message);
     }
+
+    return data;
 };

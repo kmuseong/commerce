@@ -1,7 +1,6 @@
 import React from 'react';
 import {
     Drawer,
-    DrawerClose,
     DrawerContent,
     DrawerDescription,
     DrawerFooter,
@@ -11,12 +10,10 @@ import {
 } from '@/shared/components/ui/drawer';
 import { Button } from '@/shared/components/ui/button';
 import { Minus, Plus } from 'lucide-react';
-import classes from './BuyProduct.module.css';
-import { AddCartProps, BuyProductProps, useBuyProductFormType } from '@/features/buyProduct/model/type';
+import classes from './EditCartButton.module.css';
+import { BuyProductProps } from '@/features/buyProduct/model/type';
 import { changePrice } from '@/shared/lib/utils';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { addCart } from '@/features/buyProduct/api/api';
-import { useAuthStore } from '@/shared/stores/auth/useAuthStore';
 import {
     Select,
     SelectContent,
@@ -26,39 +23,56 @@ import {
     SelectValue,
 } from '@/shared/components/ui/select';
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/shared/components/ui/form';
-import { useBuyProductForm } from '@/features/buyProduct/model/validation';
+import { useEditProductForm } from '@/features/editCartButton/model/validation';
+import { EditCartProps, useEditProductFormType } from '@/features/editCartButton/model/type';
+import { editOption } from '@/features/editCartButton/api/api';
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+} from '@/shared/components/ui/alert-dialog';
 
-export const BuyProduct: React.FC<BuyProductProps> = ({ price, id }) => {
-    const { user } = useAuthStore();
-    const form = useBuyProductForm();
+export const EditCartButton: React.FC<BuyProductProps> = ({ price, id }) => {
+    const { form, isLoading } = useEditProductForm(id);
     const queryClient = useQueryClient();
 
     const { mutate, isPending: cartLoading } = useMutation({
-        mutationKey: ['addCart'],
-        mutationFn: ({ userId, productId, option }: AddCartProps) => addCart({ userId, productId, option }),
+        mutationKey: ['EditCart'],
+        mutationFn: ({ id, option }: EditCartProps) => editOption({ id, option }),
         onSuccess: () => {
             queryClient.invalidateQueries({
                 queryKey: ['getCarts'],
             });
-            queryClient.invalidateQueries({ queryKey: ['getCartLength'] });
         },
         onError: (error) => {
-            console.log('장바구니 추가 실패', { error });
+            console.log('장바구니 변경 실패', { error });
         },
     });
 
-    const onSubmit = async (optionForm: useBuyProductFormType) => {
-        mutate({ userId: user?.id as string, productId: id, option: optionForm });
+    const onSubmit = async (optionForm: useEditProductFormType) => {
+        mutate({ id, option: optionForm });
     };
 
     if (cartLoading) {
         return <div>장바구니 추가중...</div>;
     }
 
+    if (isLoading) {
+        return <div>로딩중...</div>;
+    }
+
     return (
         <Drawer>
             <DrawerTrigger asChild>
-                <Button className="w-full">구매하기</Button>
+                <Button variant="outline" className="w-full">
+                    옵션변경
+                </Button>
             </DrawerTrigger>
 
             <DrawerContent className={classes.drawer}>
@@ -68,7 +82,7 @@ export const BuyProduct: React.FC<BuyProductProps> = ({ price, id }) => {
                 </DrawerHeader>
 
                 <Form {...form}>
-                    <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-4">
+                    <form className="flex flex-col gap-4">
                         <FormField
                             control={form.control}
                             name="roasting"
@@ -164,19 +178,40 @@ export const BuyProduct: React.FC<BuyProductProps> = ({ price, id }) => {
 
                         <div className="w-full">
                             <DrawerFooter>
-                                {form.formState.isValid ? (
-                                    <DrawerClose asChild>
-                                        <Button className="w-full" variant="outline" type="submit">
-                                            장바구니
+                                <AlertDialog>
+                                    <AlertDialogTrigger asChild>
+                                        <Button type="button" className="w-full">
+                                            옵션 변경
                                         </Button>
-                                    </DrawerClose>
-                                ) : (
-                                    <Button className="w-full" variant="outline" type="submit">
-                                        장바구니
-                                    </Button>
-                                )}
-
-                                <Button className="w-full">구매하기</Button>
+                                    </AlertDialogTrigger>
+                                    <AlertDialogContent className={classes.modal}>
+                                        <AlertDialogHeader>
+                                            <AlertDialogTitle className="text-center">
+                                                옵션을 변경하시겠습니까?
+                                            </AlertDialogTitle>
+                                            <AlertDialogDescription className="text-center">
+                                                로스팅: {form.watch('roasting')}
+                                            </AlertDialogDescription>
+                                            <AlertDialogDescription className="text-center">
+                                                분쇄도: {form.watch('grind')}
+                                            </AlertDialogDescription>
+                                            <AlertDialogDescription className="text-center">
+                                                수량: {form.watch('quantity')}
+                                            </AlertDialogDescription>
+                                        </AlertDialogHeader>
+                                        <AlertDialogFooter>
+                                            <AlertDialogCancel className="w-full">취소</AlertDialogCancel>
+                                            <AlertDialogAction
+                                                className="w-full"
+                                                onClick={() => {
+                                                    form.handleSubmit(onSubmit)();
+                                                }}
+                                            >
+                                                확인
+                                            </AlertDialogAction>
+                                        </AlertDialogFooter>
+                                    </AlertDialogContent>
+                                </AlertDialog>
                             </DrawerFooter>
                         </div>
                     </form>

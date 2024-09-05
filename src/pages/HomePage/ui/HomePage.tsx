@@ -2,13 +2,14 @@ import { getUserAndSaveToDB } from '@/features/login/api/api';
 import { useAuthStore } from '@/shared/stores/auth/useAuthStore';
 import supabase from '@/supabaseClient';
 import React, { useEffect } from 'react';
-import { ShoppingBag, Search, Home, User, TextSearchIcon } from 'lucide-react';
+import { Search, Home, User, TextSearchIcon } from 'lucide-react';
 import classes from './HomePage.module.css';
 import { Input } from '@/shared/components/ui/input';
 import { EventCarousel } from '@/features/eventCarousel';
 import { RecentProducts } from '@/features/recentProducts';
 import { useNavigate } from 'react-router-dom';
 import { Header } from '@/widgets/header/ui/Header';
+import { CartIcon } from '@/widgets/cartIcon';
 
 export const HomePage: React.FC = () => {
     const { user, setUser } = useAuthStore();
@@ -53,7 +54,7 @@ export const HomePage: React.FC = () => {
             <Header>
                 <div className={classes.headerNav}>
                     <div>로고</div>
-                    <ShoppingBag onClick={() => navigate(`/cart`)} />
+                    <CartIcon />
                 </div>
                 <div className={classes.search}>
                     <Input />
