@@ -1,5 +1,5 @@
 .drawer {
-    @apply w-full left-0;
+    @apply flex flex-col gap-3 w-full left-0 p-4;
 
     @media all and (min-width: 1024px) {
         width: 600px;
