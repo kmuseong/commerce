@@ -13,8 +13,6 @@ export const getOption = async (id: number) => {
 };
 
 export const editOption = async ({ id, option }: EditCartProps) => {
-    console.log(id, option);
-
     const { data, error } = await supabase
         .from('carts')
         .update({ ...option })

@@ -1,9 +1,7 @@
-import { AddCartProps } from '@/features/buyProduct/model/type';
+import { CartFormProps } from '@/entities/cart/type';
 import supabase from '@/supabaseClient';
 
-export const addCart = async ({ userId, productId, option }: AddCartProps) => {
-    console.log(option);
-
+export const addCart = async ({ userId, productId, option }: CartFormProps) => {
     const { data, error } = await supabase
         .from('carts')
         .insert([{ user_id: userId, product_id: productId, ...option }])
