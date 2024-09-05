@@ -1,44 +1,44 @@
-import { CreateFormType } from '@/features/createProduct/model/type';
 import { v4 as uuid } from 'uuid';
 import supabase from '@/supabaseClient';
+import { CreateFormType, ProductFormType } from '@/entities/product/type';
 
-export const onAddProduct = async ({ form, images }: CreateFormType) => {
-    try {
-        // 1. products 테이블에 데이터를 삽입하고 product_id를 가져옵니다.
-        const { data, error } = await supabase.from('products').insert([form]).select();
+export const addProduct = async (form: ProductFormType) => {
+    const { data, error } = await supabase.from('products').insert([form]).select();
 
-        if (error) {
-            return console.log({ error });
+    if (error) {
+        throw new Error(error.message);
+    }
+
+    return data[0];
+};
+
+export const uploadProductImages = async (product_id: string, images: File[]) => {
+    for (const file of images) {
+        const newFileName = uuid();
+        const { error: imageError } = await supabase.storage.from('images').upload(`products/${newFileName}`, file);
+
+        if (imageError) {
+            throw new Error(imageError.message);
+            continue; // 에러가 발생해도 나머지 이미지를 업로드 계속 진행
         }
 
-        // 방금 삽입된 제품의 product_id를 가져옵니다.
-        const productId = data[0].id;
+        const image_url = supabase.storage.from('images').getPublicUrl(`products/${newFileName}`).data.publicUrl;
 
-        // 2. 각 이미지를 업로드하고 product_images 테이블에 삽입합니다.
-        images?.forEach(async (file) => {
-            const newFileName = uuid();
-            const { error: imageError } = await supabase.storage.from('images').upload(`products/${newFileName}`, file);
+        const { error: productImageError } = await supabase
+            .from('product_images')
+            .insert([{ product_id, image_url }])
+            .select();
 
-            if (imageError) {
-                return console.log({ imageError });
-            }
-
-            // 이미지의 URL을 가져옵니다.
-            const imageUrl = supabase.storage.from('images').getPublicUrl(`products/${newFileName}`).data.publicUrl;
-
-            // product_images 테이블에 삽입
-            const { error: productImageError } = await supabase
-                .from('product_images')
-                .insert([{ product_id: productId, image_url: imageUrl }])
-                .select();
-
-            if (productImageError) {
-                return console.log({ productImageError });
-            }
-        });
-
-        return data[0];
-    } catch (error) {
-        console.log({ error });
+        if (productImageError) {
+            throw new Error(productImageError.message);
+        }
     }
+};
+
+export const onAddProduct = async ({ form, images }: CreateFormType) => {
+    const product = await addProduct(form);
+    if (images?.length) {
+        await uploadProductImages(product.id, images);
+    }
+    return product;
 };

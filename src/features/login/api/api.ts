@@ -1,20 +1,16 @@
-import { LoginType } from '@/features/login/model/type';
+import { LoginFormType } from '@/entities/auth/type';
 import supabase from '@/supabaseClient';
 
-export const onLogin = async (form: LoginType) => {
+export const onLogin = async (form: LoginFormType) => {
     const { data, error } = await supabase.auth.signInWithPassword({
         ...form,
     });
 
     if (error) {
-        return console.log('로그인 실패', { error });
+        throw new Error('로그인에 실패했습니다.');
     }
 
     const userId = data?.user?.id;
-    if (!userId) {
-        console.error('사용자 ID를 찾을 수 없습니다.');
-        return;
-    }
 
     const { data: userData, error: userError } = await supabase
         .from('users')
@@ -23,76 +19,64 @@ export const onLogin = async (form: LoginType) => {
         .single();
 
     if (userError) {
-        console.error('추가 정보 조회 실패:', userError.message);
-        return;
+        throw new Error('회원정보가 없습니다.');
     }
 
     return userData;
 };
 
 export const getUserAndSaveToDB = async () => {
-    try {
-        const { data, error } = await supabase.auth.getUser();
+    const { data, error } = await supabase.auth.getUser();
 
-        if (error) {
-            return console.log({ error });
+    if (error) {
+        throw new Error(error.message);
+    }
+
+    if (data.user) {
+        const { data: existingUser, error: selectError } = await supabase
+            .from('users')
+            .select('id')
+            .eq('id', data.user.id)
+            .single(); // 단일 결과만 반환
+
+        if (selectError) {
+            throw new Error(selectError.message);
         }
 
-        if (data.user) {
-            // 먼저 users 테이블에 해당 사용자가 존재하는지 확인합니다.
-            const { data: existingUser, error: selectError } = await supabase
-                .from('users')
-                .select('id')
-                .eq('id', data.user.id)
-                .single(); // 단일 결과만 반환
+        if (!existingUser) {
+            const { data: insertData, error: insertError } = await supabase.from('users').insert({
+                id: data.user.id,
+                email: data.user.email,
+                password: '',
+                nickname: data.user.user_metadata?.name || 'Anonymous',
+                isSeller: false,
+            });
 
-            if (selectError) {
-                return console.log({ selectError });
+            if (insertError) {
+                throw new Error(insertError.message);
             }
 
-            // 사용자가 존재하지 않을 경우에만 삽입
-            if (!existingUser) {
-                const { data: insertData, error: insertError } = await supabase.from('users').insert({
-                    id: data.user.id,
-                    email: data.user.email,
-                    password: '',
-                    nickname: data.user.user_metadata?.name || 'Anonymous',
-                    isSeller: false,
-                });
-
-                if (insertError) {
-                    return console.log({ insertError });
-                }
-
-                return insertData;
-            } else {
-                console.log('User already exists in the database.');
-                return data;
-            }
+            return insertData;
+        } else {
+            return data;
         }
-    } catch (error) {
-        console.log({ error });
     }
 };
 
 export const googleLogin = async () => {
-    try {
-        const { data, error } = await supabase.auth.signInWithOAuth({
-            provider: 'google',
-            options: {
-                queryParams: {
-                    access_type: 'offline',
-                    prompt: 'consent',
-                },
+    const { data, error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+            queryParams: {
+                access_type: 'offline',
+                prompt: 'consent',
             },
-        });
+        },
+    });
 
-        if (error) {
-            throw error;
-        }
-
-        return data;
-    } catch (error) {
-        console.error('Error during Google login:', error);
+    if (error) {
+        throw new Error(error.message);
     }
+
+    return data;
 };
