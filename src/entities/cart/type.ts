@@ -1,9 +1,11 @@
 export interface CartProps {
     id: number;
+    quantity: number;
+    roasting: string;
+    grind: string;
+    products: ProductType;
     user_id: string;
     product_id: number;
-    count: number;
-    products: ProductType;
 }
 
 export interface ProductType {
