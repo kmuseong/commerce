@@ -15,8 +15,9 @@ import { useNavigate } from 'react-router-dom';
 import classes from './SignupForm.module.css';
 import { useMutation } from '@tanstack/react-query';
 import { onSignup } from '@/features/signup/api/api';
-import { CarouselApi, SignupType } from '@/features/signup/model/type';
+import { CarouselApi } from '@/features/signup/model/type';
 import { schema } from '@/features/signup/model/validation';
+import { SignupFormType } from '@/entities/auth/type';
 
 export const SignupForm: React.FC = () => {
     const [isSeller, setIsSeller] = useState<boolean>(false);
@@ -27,7 +28,7 @@ export const SignupForm: React.FC = () => {
         register,
         formState: { errors },
         handleSubmit,
-    } = useForm<SignupType>({
+    } = useForm<SignupFormType>({
         resolver: zodResolver(schema),
         defaultValues: {
             email: '',
@@ -46,7 +47,7 @@ export const SignupForm: React.FC = () => {
         },
     });
 
-    const onSubmit = (form: SignupType) => {
+    const onSubmit = (form: SignupFormType) => {
         mutate({ ...form, isSeller });
     };
 

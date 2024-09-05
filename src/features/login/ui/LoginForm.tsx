@@ -4,13 +4,13 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { Button } from '@/shared/components/ui/button';
 import { Input } from '@/shared/components/ui/input';
-import { LoginType } from '@/features/login/model/type';
 import { useNavigate } from 'react-router-dom';
 import classes from './LoginForm.module.css';
 import { schema } from '@/features/login/model/validation';
 import { googleLogin, onLogin } from '@/features/login/api/api';
 import { useAuthStore } from '@/shared/stores/auth/useAuthStore';
 import { User } from '@/shared/stores/auth/type';
+import { LoginFormType } from '@/entities/auth/type';
 
 export const LoginForm: React.FC = () => {
     const navigate = useNavigate();
@@ -19,7 +19,7 @@ export const LoginForm: React.FC = () => {
         register,
         formState: { errors },
         handleSubmit,
-    } = useForm<LoginType>({
+    } = useForm<LoginFormType>({
         resolver: zodResolver(schema),
         defaultValues: {
             email: '',
@@ -48,7 +48,7 @@ export const LoginForm: React.FC = () => {
         },
     });
 
-    const onSubmit = (form: LoginType) => {
+    const onSubmit = (form: LoginFormType) => {
         mutate(form);
     };
 

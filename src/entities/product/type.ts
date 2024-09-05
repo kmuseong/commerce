@@ -1,5 +1,15 @@
+export interface ProductFormType {
+    name: string;
+    description: string;
+    origin: string;
+    bean_type: string;
+    price: string;
+    weight: string;
+    stock_quantity: string;
+}
+
 export interface ProductType {
-    id: string;
+    id?: number;
     name: string;
     description: string;
     origin: string;
@@ -10,23 +20,19 @@ export interface ProductType {
     product_images: ProductImageType[];
 }
 
-export interface UpdateFormType {
-    name: string;
-    description: string;
-    origin: string;
-    bean_type: string;
-    price: string;
-    weight: string;
-    stock_quantity: string;
+export interface ProductImageType {
+    id: number;
+    image_url: string;
+    product_id?: string;
+}
+
+export interface CreateFormType {
+    form: ProductFormType;
+    images: File[];
 }
 
 export interface UpdateFrormProps {
     id: string;
-    form: UpdateFormType;
+    form: ProductFormType;
     images: File[];
-}
-
-export interface ProductImageType {
-    id: number;
-    image_url: string;
 }

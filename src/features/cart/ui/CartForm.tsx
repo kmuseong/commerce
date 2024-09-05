@@ -1,5 +1,4 @@
 import React from 'react';
-import { CartFormProps, CartProps } from '@/entities/cart/type';
 import { deleteCartProduct } from '@/features/cart/api/api';
 import {
     AlertDialog,
@@ -18,6 +17,8 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import classes from './CartForm.module.css';
 import { changePrice } from '@/shared/lib/utils';
 import { EditCartButton } from '@/features/editCartButton';
+import { CartFormProps } from '@/features/cart/model/type';
+import { CartProps } from '@/entities/cart/type';
 
 export const CartForm: React.FC<CartFormProps> = ({
     data,

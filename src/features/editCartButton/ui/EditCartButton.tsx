@@ -11,7 +11,6 @@ import {
 import { Button } from '@/shared/components/ui/button';
 import { Minus, Plus } from 'lucide-react';
 import classes from './EditCartButton.module.css';
-import { BuyProductProps } from '@/features/buyProduct/model/type';
 import { changePrice } from '@/shared/lib/utils';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import {
@@ -24,7 +23,7 @@ import {
 } from '@/shared/components/ui/select';
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/shared/components/ui/form';
 import { useEditProductForm } from '@/features/editCartButton/model/validation';
-import { EditCartProps, useEditProductFormType } from '@/features/editCartButton/model/type';
+import { EditCartButtonProps, EditCartProps, useEditProductFormType } from '@/features/editCartButton/model/type';
 import { editOption } from '@/features/editCartButton/api/api';
 import {
     AlertDialog,
@@ -38,7 +37,7 @@ import {
     AlertDialogTrigger,
 } from '@/shared/components/ui/alert-dialog';
 
-export const EditCartButton: React.FC<BuyProductProps> = ({ price, id }) => {
+export const EditCartButton: React.FC<EditCartButtonProps> = ({ price, id }) => {
     const { form, isLoading } = useEditProductForm(id);
     const queryClient = useQueryClient();
 

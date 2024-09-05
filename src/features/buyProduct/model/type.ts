@@ -6,16 +6,4 @@ export interface BuyProductProps {
     id: number;
 }
 
-export interface AddCartProps {
-    userId: string;
-    productId: number;
-    option: OptionType;
-}
-
-interface OptionType {
-    roasting: string;
-    grind: string;
-    quantity: number;
-}
-
 export type useBuyProductFormType = z.infer<typeof buyProductSchema>;
