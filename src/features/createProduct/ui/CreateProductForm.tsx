@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import classes from './createProductForm.module.css';
+import classes from './CreateProductForm.module.css';
 import { Button } from '@/shared/components/ui/button';
 import { Input } from '@/shared/components/ui/input';
 import { useForm, Controller } from 'react-hook-form';
