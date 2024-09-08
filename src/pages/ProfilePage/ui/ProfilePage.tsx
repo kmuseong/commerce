@@ -2,14 +2,12 @@ import { Button } from '@/shared/components/ui/button';
 import { useAuthStore } from '@/shared/stores/auth/useAuthStore';
 import supabase from '@/supabaseClient';
 import React from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
+import { useNavigate } from 'react-router-dom';
 
 export const ProfilePage: React.FC = () => {
     const navigate = useNavigate();
-    const { userID } = useParams();
     const { isAuthenticated, clearUser, user } = useAuthStore();
-
-    console.log(userID);
 
     const logOut = async () => {
         await supabase.auth.signOut();
@@ -18,7 +16,12 @@ export const ProfilePage: React.FC = () => {
     };
 
     return (
-        <div>
+        <>
+            <Helmet>
+                <title>로고이름 - 마이페이지</title>
+                <link rel="canonical" href="https://commerce-kappa-coral-63.vercel.app/profile" />
+            </Helmet>
+
             {isAuthenticated ? (
                 <>
                     <Button onClick={logOut}>로그아웃</Button>
@@ -27,6 +30,6 @@ export const ProfilePage: React.FC = () => {
             ) : (
                 <Button onClick={() => navigate('/login')}>로그인</Button>
             )}
-        </div>
+        </>
     );
 };

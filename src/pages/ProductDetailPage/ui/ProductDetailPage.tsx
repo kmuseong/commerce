@@ -21,6 +21,7 @@ import {
 import { Header } from '@/widgets/header/ui/Header';
 import { BuyProduct } from '@/features/buyProduct';
 import { CartIcon } from '@/widgets/cartIcon';
+import { Helmet } from 'react-helmet-async';
 
 export const ProductDetailPage: React.FC = () => {
     const { user } = useAuthStore();
@@ -54,6 +55,11 @@ export const ProductDetailPage: React.FC = () => {
 
     return (
         <>
+            <Helmet>
+                <title>로고이름 - 상품상세페이지</title>
+                <link rel="canonical" href={`https://commerce-kappa-coral-63.vercel.app/products/${id}`} />
+            </Helmet>
+
             <Header>
                 <div className={classes.nav}>
                     <ChevronLeft onClick={() => navigate(-1)} />
