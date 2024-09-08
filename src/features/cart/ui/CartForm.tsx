@@ -79,7 +79,11 @@ export const CartForm: React.FC<CartFormProps> = ({
                             </div>
 
                             <div className="flex gap-3">
-                                <img className="w-20 object-cover" src={products.product_images[0]?.image_url} />
+                                <img
+                                    className="w-20 object-cover"
+                                    src={products.product_images[0]?.image_url}
+                                    alt={`${products.name} 이미지`}
+                                />
                                 <div className="flex flex-col gap-2">
                                     <div>{products.name}</div>
                                     <div>{changePrice(Number(products.price))}원</div>
