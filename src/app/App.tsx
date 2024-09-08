@@ -1,12 +1,15 @@
 import ReactQuery from '@/app/provider/ReactQuery';
 import Router from '@/app/provider/Router';
 import React from 'react';
+import { HelmetProvider } from 'react-helmet-async';
 
 const App: React.FC = () => {
     return (
-        <ReactQuery>
-            <Router />
-        </ReactQuery>
+        <HelmetProvider>
+            <ReactQuery>
+                <Router />
+            </ReactQuery>
+        </HelmetProvider>
     );
 };
 

@@ -10,12 +10,11 @@ import { RecentProducts } from '@/features/recentProducts';
 import { useNavigate } from 'react-router-dom';
 import { Header } from '@/widgets/header/ui/Header';
 import { CartIcon } from '@/widgets/cartIcon';
+import { Helmet } from 'react-helmet-async';
 
 export const HomePage: React.FC = () => {
     const { user, setUser } = useAuthStore();
     const navigate = useNavigate();
-
-    console.log(user);
 
     useEffect(() => {
         const checkSession = async () => {
@@ -51,6 +50,11 @@ export const HomePage: React.FC = () => {
 
     return (
         <>
+            <Helmet>
+                <title>로고이름 - 메인</title>
+                <link rel="canonical" href="https://commerce-kappa-coral-63.vercel.app" />
+            </Helmet>
+
             <Header>
                 <div className={classes.headerNav}>
                     <div>로고</div>

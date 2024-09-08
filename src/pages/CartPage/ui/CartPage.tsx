@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import classes from './CartPage.module.css';
 import { Button } from '@/shared/components/ui/button';
 import { changePrice } from '@/shared/lib/utils';
+import { Helmet } from 'react-helmet-async';
 
 export const CartPage: React.FC = () => {
     const [selectedItems, setSelectedItems] = useState<number[]>([]);
@@ -40,8 +41,6 @@ export const CartPage: React.FC = () => {
         }
     };
 
-    console.log(data);
-
     useEffect(() => {
         if (data) {
             const calculatedTotalPrice = data
@@ -60,6 +59,11 @@ export const CartPage: React.FC = () => {
 
     return (
         <>
+            <Helmet>
+                <title>대충커피원두사이트 - 장바구니</title>
+                <link rel="canonical" href="https://commerce-kappa-coral-63.vercel.app/cart" />
+            </Helmet>
+
             <Header>
                 <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">

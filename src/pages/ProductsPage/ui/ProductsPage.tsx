@@ -6,10 +6,16 @@ import React from 'react';
 import classes from './ProductsPage.module.css';
 import { ProductFiter } from '@/features/productFiter';
 import { CartIcon } from '@/widgets/cartIcon';
+import { Helmet } from 'react-helmet-async';
 
 export const ProductsPage: React.FC = () => {
     return (
-        <div>
+        <>
+            <Helmet>
+                <title>로고이름 - 상품리스트페이지</title>
+                <link rel="canonical" href="https://commerce-kappa-coral-63.vercel.app/products" />
+            </Helmet>
+
             <Header>
                 <div className={classes.headerNav}>
                     <div>로고</div>
@@ -24,6 +30,6 @@ export const ProductsPage: React.FC = () => {
             <ProductFiter />
 
             <Products />
-        </div>
+        </>
     );
 };
