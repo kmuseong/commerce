@@ -23,10 +23,14 @@ export const ProductDetailForm: React.FC<ProductDetailProps> = ({ data }) => {
                 onMouseLeave={plugin.current.reset}
             >
                 <CarouselContent>
-                    {data?.product_images.map((item: ProductImageType) => (
+                    {data?.product_images.map((item: ProductImageType, index: number) => (
                         <CarouselItem key={item.id}>
                             <div className="w-full">
-                                <img className={classes.image} src={item.image_url} />
+                                <img
+                                    className={classes.image}
+                                    src={item.image_url}
+                                    alt={`${data.name} 상품 이미지-${index}`}
+                                />
                             </div>
                         </CarouselItem>
                     ))}

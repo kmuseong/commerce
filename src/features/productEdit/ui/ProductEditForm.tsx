@@ -316,7 +316,7 @@ export const ProductEditForm: React.FC = () => {
                             <li key={index} className={classes.selectImg}>
                                 <img
                                     src={src}
-                                    alt={`Selected file ${index + 1}`}
+                                    alt={`선택한 이미지 ${index + 1}`}
                                     style={{ width: '100px', height: '100px', objectFit: 'cover' }}
                                 />
                                 <div className={classes.remove}>
