@@ -3,7 +3,7 @@
 }
 
 .info {
-    @apply flex flex-col gap-4 p-2 justify-between;
+    @apply flex flex-col gap-3 p-2 justify-between;
 }
 
 .card {
