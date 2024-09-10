@@ -89,7 +89,7 @@ export const CartPage: React.FC = () => {
 
             <div className={classes.space} />
             <nav className={classes.footerNav}>
-                <Button className="w-full" disabled={selectedItems.length <= 0}>
+                <Button className="w-full" disabled={selectedItems.length <= 0} onClick={() => navigate('/order')}>
                     {selectedItems.length > 0
                         ? `${changePrice(totalPrice)}원 구매하기 (${selectedItems.length}개)`
                         : '구매하기'}
