@@ -23,7 +23,7 @@ import { BuyProduct } from '@/features/buyProduct';
 import { CartIcon } from '@/widgets/cartIcon';
 import { Helmet } from 'react-helmet-async';
 import { SkeletonUi } from '@/pages/ProductDetailPage/lib/SkeletonUi';
-import { DeleteLoading } from '@/pages/ProductDetailPage/lib/DeleteLoading';
+import { Loading } from '@/widgets/Load';
 
 export const ProductDetailPage: React.FC = () => {
     const { user } = useAuthStore();
@@ -104,7 +104,7 @@ export const ProductDetailPage: React.FC = () => {
                 )}
             </div>
 
-            {isPending && <DeleteLoading />}
+            {isPending && <Loading>상품을 삭제하고 있습니다</Loading>}
         </>
     );
 };
