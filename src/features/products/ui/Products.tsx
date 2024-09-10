@@ -1,4 +1,5 @@
 import { getProducts } from '@/features/products/api/api';
+import { SkeletonUi } from '@/features/products/lib/SkeletonUi';
 import { Item } from '@/widgets/item';
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
@@ -10,7 +11,7 @@ export const Products: React.FC = () => {
     });
 
     if (isLoading) {
-        return <div>불러오는중...</div>;
+        return <SkeletonUi />;
     }
 
     return (

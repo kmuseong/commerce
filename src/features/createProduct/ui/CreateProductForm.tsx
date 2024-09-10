@@ -22,6 +22,7 @@ import { schema } from '@/features/createProduct/model/validation';
 import { useNavigate } from 'react-router-dom';
 import { Image, Trash2 } from 'lucide-react';
 import { ProductFormType } from '@/entities/product/type';
+import { Loading } from '@/widgets/Load';
 
 export const CreateProductForm: React.FC = () => {
     const {
@@ -107,7 +108,7 @@ export const CreateProductForm: React.FC = () => {
     };
 
     if (isPending) {
-        return <div>로딩중...</div>;
+        return <Loading>상품을 추가하고 있습니다</Loading>;
     }
 
     return (

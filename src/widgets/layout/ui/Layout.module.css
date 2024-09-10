@@ -1,5 +1,5 @@
 .layout {
-    @apply w-full flex flex-col;
+    @apply w-full flex flex-col relative;
     margin: 0 auto;
 
     @media all and (min-width: 1024px) {

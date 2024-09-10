@@ -22,6 +22,8 @@ import { Header } from '@/widgets/header/ui/Header';
 import { BuyProduct } from '@/features/buyProduct';
 import { CartIcon } from '@/widgets/cartIcon';
 import { Helmet } from 'react-helmet-async';
+import { SkeletonUi } from '@/pages/ProductDetailPage/lib/SkeletonUi';
+import { Loading } from '@/widgets/Load';
 
 export const ProductDetailPage: React.FC = () => {
     const { user } = useAuthStore();
@@ -38,7 +40,7 @@ export const ProductDetailPage: React.FC = () => {
         mutationFn: (id: string) => onDeleteProduct(id!),
         onSuccess: () => {
             console.log('삭제성공');
-            navigate('/'); // 나중에 변경 필요
+            navigate('/');
         },
         onError: (error) => {
             console.log('삭제 실패', { error });
@@ -46,11 +48,7 @@ export const ProductDetailPage: React.FC = () => {
     });
 
     if (getLoading) {
-        return <div>값 불러오는중...</div>;
-    }
-
-    if (isPending) {
-        return <div>삭제중...</div>;
+        return <SkeletonUi />;
     }
 
     return (
@@ -74,7 +72,6 @@ export const ProductDetailPage: React.FC = () => {
 
             <ProductDetailForm data={data!} />
 
-            <div className="h-16" />
             <div className={classes.footer}>
                 {user?.isSeller ? (
                     <>
@@ -106,6 +103,8 @@ export const ProductDetailPage: React.FC = () => {
                     <BuyProduct price={data?.price as string} id={data?.id as number} />
                 )}
             </div>
+
+            {isPending && <Loading>상품을 삭제하고 있습니다</Loading>}
         </>
     );
 };
