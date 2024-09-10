@@ -11,6 +11,7 @@ import { ProfilePage } from '@/pages/ProfilePage';
 import { Layout } from '@/widgets/layout';
 import { ProductsPage } from '@/pages/ProductsPage';
 import { CartPage } from '@/pages/CartPage';
+import { OrderPage } from '@/pages/OrderPage';
 
 const Router: React.FC = () => {
     return (
@@ -34,6 +35,9 @@ const Router: React.FC = () => {
 
                     {/** 장바구니 */}
                     <Route path="/cart" element={<CartPage />} />
+
+                    {/** 주문 */}
+                    <Route path="/order" element={<OrderPage />} />
                 </Routes>
             </Layout>
         </BrowserRouter>
