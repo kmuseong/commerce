@@ -9,6 +9,7 @@ import classes from './CartPage.module.css';
 import { Button } from '@/shared/components/ui/button';
 import { changePrice } from '@/shared/lib/utils';
 import { Helmet } from 'react-helmet-async';
+import { SkeletonUi } from '@/pages/CartPage/lib/SkeletonUi';
 
 export const CartPage: React.FC = () => {
     const [selectedItems, setSelectedItems] = useState<number[]>([]);
@@ -54,7 +55,7 @@ export const CartPage: React.FC = () => {
     }, [selectedItems, data]);
 
     if (isLoading) {
-        return <div>로딩중..</div>;
+        return <SkeletonUi />;
     }
 
     return (
