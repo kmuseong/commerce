@@ -35,7 +35,7 @@ export const ProductEditForm: React.FC = () => {
     const [previews, setPreviews] = useState<string[]>([]);
     const inputRef = useRef<HTMLInputElement | null>(null);
 
-    const { data, isLoading } = useQuery<ProductType, Error>({
+    const { data } = useQuery<ProductType, Error>({
         queryKey: ['getProduct', id],
         queryFn: () => getProduct(id!),
     });
@@ -51,7 +51,7 @@ export const ProductEditForm: React.FC = () => {
         resolver: zodResolver(schema),
     });
 
-    const { mutate, isPending } = useMutation<ProductType | null, Error, UpdateFrormProps>({
+    const { mutate } = useMutation<ProductType | null, Error, UpdateFrormProps>({
         mutationKey: ['updateProduct', id],
         mutationFn: ({ id, form, images }) => updateProduct(id, form, images),
         onSuccess: (response) => {
@@ -121,14 +121,6 @@ export const ProductEditForm: React.FC = () => {
             setSelectedFiles(data.product_images.map((img) => new File([], img.image_url)));
         }
     }, [data, reset]);
-
-    if (isLoading) {
-        return <div>정보 불러오는 중...</div>;
-    }
-
-    if (isPending) {
-        return <div>로딩중...</div>;
-    }
 
     return (
         <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
