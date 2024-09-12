@@ -5,6 +5,7 @@ import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
 import classes from './OrderPage.module.css';
 import { Button } from '@/shared/components/ui/button';
+import { SelectAddress } from '@/features/address';
 
 export const OrderPage: React.FC = () => {
     const navigate = useNavigate();
@@ -22,6 +23,8 @@ export const OrderPage: React.FC = () => {
                     주문서
                 </div>
             </Header>
+
+            <SelectAddress />
 
             <div className={classes.footer}>
                 <Button className="w-full">결제버튼</Button>
