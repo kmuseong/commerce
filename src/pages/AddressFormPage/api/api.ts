@@ -16,7 +16,7 @@ const resetDefault = async (isDefault: boolean, userId: string) => {
 };
 
 export const onAddAddress = async ({ form, userId }: AddressProps) => {
-    await resetDefault(form.isDefault!, userId);
+    await resetDefault(form.isDefault!, userId!);
 
     const { error } = await supabase
         .from('address')
