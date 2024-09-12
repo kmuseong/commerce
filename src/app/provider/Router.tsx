@@ -12,6 +12,9 @@ import { Layout } from '@/widgets/layout';
 import { ProductsPage } from '@/pages/ProductsPage';
 import { CartPage } from '@/pages/CartPage';
 import { OrderPage } from '@/pages/OrderPage';
+import { AddressPage } from '@/pages/AddressPage';
+import { AddressFormPage } from '@/pages/AddressFormPage';
+import { AddressEditPage } from '@/pages/AddressEditPage';
 
 const Router: React.FC = () => {
     return (
@@ -38,6 +41,11 @@ const Router: React.FC = () => {
 
                     {/** 주문 */}
                     <Route path="/order" element={<OrderPage />} />
+
+                    {/** 배송지 */}
+                    <Route path="/my/address" element={<AddressPage />} />
+                    <Route path="/my/address/create" element={<AddressFormPage />} />
+                    <Route path="/my/address/:id/edit" element={<AddressEditPage />} />
                 </Routes>
             </Layout>
         </BrowserRouter>
