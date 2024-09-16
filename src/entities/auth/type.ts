@@ -9,3 +9,10 @@ export interface SignupFormType {
     nickname: string;
     isSeller: boolean;
 }
+
+export interface User {
+    id: string;
+    email: string;
+    isSeller: boolean;
+    nickname: string;
+}
