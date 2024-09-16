@@ -9,8 +9,8 @@ export const SkeletonUi: React.FC = () => {
             </div>
 
             <ul className="flex flex-col gap-4">
-                {Array.from({ length: 3 }).map(() => (
-                    <div className="p-4 flex flex-col gap-4">
+                {Array.from({ length: 3 }).map((_, index) => (
+                    <div key={index} className="p-4 flex flex-col gap-4">
                         <div className="flex gap-4">
                             <Skeleton className="h-[100px] w-[100px] rounded-xl" />
 
