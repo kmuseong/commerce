@@ -20,15 +20,14 @@ import { EditCartButton } from '@/features/editCartButton';
 import { CartFormProps } from '@/features/cart/model/type';
 import { CartProps } from '@/entities/cart/type';
 import { Loading } from '@/widgets/Load';
+import { useOrderStore } from '@/shared/stores/order/useOrderStore';
 
-export const CartForm: React.FC<CartFormProps> = ({
-    data,
-    isAllSelected,
-    toggleSelectItem,
-    selectedItems,
-    toggleSelectAll,
-}) => {
+export const CartForm: React.FC<CartFormProps> = ({ data }) => {
     const queryClient = useQueryClient();
+    const { selectProducts, toggleSelectItem, toggleSelectAll } = useOrderStore();
+
+    const selectedItems = selectProducts.map((item: CartProps) => item.products.id);
+    const isAllSelected = data.length > 0 && selectedItems.length === data.length;
 
     const { mutate, isPending: deleteLoading } = useMutation({
         mutationKey: ['deleteCart'],
@@ -44,7 +43,16 @@ export const CartForm: React.FC<CartFormProps> = ({
         <>
             <div className="flex flex-col gap-4">
                 <div className={classes.all}>
-                    <Checkbox id="all" checked={isAllSelected} onCheckedChange={toggleSelectAll} />
+                    <Checkbox
+                        id="all"
+                        checked={isAllSelected}
+                        onCheckedChange={() =>
+                            toggleSelectAll(
+                                isAllSelected,
+                                data.map((item) => item)
+                            )
+                        }
+                    />
                     <label
                         htmlFor="all"
                         className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -54,19 +62,19 @@ export const CartForm: React.FC<CartFormProps> = ({
                 </div>
 
                 <ul className={classes.list}>
-                    {data?.map(({ id, products, quantity, roasting, grind }: CartProps) => {
-                        const isSelected = selectedItems.includes(id);
+                    {data?.map((item: CartProps) => {
+                        const isSelected = selectedItems.includes(item.products.id);
                         return (
-                            <li key={id} className={classes.item}>
+                            <li key={item.id} className={classes.item}>
                                 <div>
                                     <div className="flex items-center space-x-2">
                                         <Checkbox
-                                            id={`item-${id}`}
+                                            id={`item-${item.id}`}
                                             checked={isSelected}
-                                            onCheckedChange={() => toggleSelectItem(id)}
+                                            onCheckedChange={() => toggleSelectItem(item)}
                                         />
                                         <label
-                                            htmlFor={`item-${id}`}
+                                            htmlFor={`item-${item.id}`}
                                             className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                                         >
                                             선택
@@ -77,21 +85,21 @@ export const CartForm: React.FC<CartFormProps> = ({
                                 <div className="flex gap-3">
                                     <img
                                         className="w-20 object-cover"
-                                        src={products.product_images[0]?.image_url}
-                                        alt={`${products.name} 이미지`}
+                                        src={item.products.product_images[0]?.image_url}
+                                        alt={`${item.products.name} 이미지`}
                                     />
                                     <div className="flex flex-col gap-2">
-                                        <div>{products.name}</div>
-                                        <div>{changePrice(Number(products.price))}원</div>
+                                        <div>{item.products.name}</div>
+                                        <div>{changePrice(Number(item.products.price))}원</div>
                                         <div>
-                                            옵션: {roasting}, {grind}
+                                            옵션: {item.roasting}, {item.grind}
                                         </div>
-                                        <div>수량: {quantity}개</div>
+                                        <div>수량: {item.quantity}개</div>
                                     </div>
                                 </div>
 
                                 <div className="flex gap-2">
-                                    <EditCartButton price={products.price} id={id} />
+                                    <EditCartButton price={item.products.price} id={item.id as number} />
 
                                     <AlertDialog>
                                         <AlertDialogTrigger asChild>
@@ -105,17 +113,20 @@ export const CartForm: React.FC<CartFormProps> = ({
                                                     장바구니에서 상품 삭제
                                                 </AlertDialogTitle>
                                                 <AlertDialogDescription>
-                                                    <p className="text-center">
+                                                    <span className="block text-center">
                                                         선택하신 상품을 장바구니에서 삭제하시겠습니까?
-                                                    </p>
-                                                    <p className="text-center text-sm text-gray-600">
+                                                    </span>
+                                                    <span className="block text-center text-sm text-gray-600">
                                                         이 작업은 취소할 수 없습니다.
-                                                    </p>
+                                                    </span>
                                                 </AlertDialogDescription>
                                             </AlertDialogHeader>
                                             <AlertDialogFooter>
                                                 <AlertDialogCancel className="w-full">취소</AlertDialogCancel>
-                                                <AlertDialogAction className="w-full" onClick={() => mutate(id)}>
+                                                <AlertDialogAction
+                                                    className="w-full"
+                                                    onClick={() => mutate(item.id as number)}
+                                                >
                                                     확인
                                                 </AlertDialogAction>
                                             </AlertDialogFooter>
