@@ -2,6 +2,24 @@
     @apply flex gap-2;
 }
 
+.paymentList {
+    @apply space-y-2 text-gray-700;
+    font-size: 13px;
+}
+
+.paymentAmountItem {
+    @apply flex justify-between;
+}
+
+.line {
+    height: 1px;
+    background-color: #8a8a8a1a;
+}
+
+.space {
+    @apply h-36;
+}
+
 .footer {
     @apply w-full flex gap-3 p-3 fixed bottom-0;
     background-color: white;

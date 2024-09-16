@@ -1,9 +1,4 @@
-export interface User {
-    id: string;
-    email: string;
-    isSeller: boolean;
-    nickname: string;
-}
+import { User } from '@/entities/auth/type';
 
 export interface AuthState {
     isAuthenticated: boolean;

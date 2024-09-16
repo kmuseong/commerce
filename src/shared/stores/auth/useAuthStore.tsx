@@ -1,4 +1,5 @@
-import { AuthState, User } from '@/shared/stores/auth/type';
+import { User } from '@/entities/auth/type';
+import { AuthState } from '@/shared/stores/auth/type';
 import { create } from 'zustand';
 import { persist, PersistStorage, StorageValue } from 'zustand/middleware';
 

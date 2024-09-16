@@ -9,8 +9,7 @@ import classes from './LoginForm.module.css';
 import { schema } from '@/features/login/model/validation';
 import { googleLogin, onLogin } from '@/features/login/api/api';
 import { useAuthStore } from '@/shared/stores/auth/useAuthStore';
-import { User } from '@/shared/stores/auth/type';
-import { LoginFormType } from '@/entities/auth/type';
+import { LoginFormType, User } from '@/entities/auth/type';
 import { Loading } from '@/widgets/Load';
 
 export const LoginForm: React.FC = () => {

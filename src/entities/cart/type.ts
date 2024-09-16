@@ -1,7 +1,7 @@
 import { ProductType } from '@/entities/product/type';
 
 export interface CartProps {
-    id: number;
+    id?: number;
     quantity: number;
     roasting: string;
     grind: string;

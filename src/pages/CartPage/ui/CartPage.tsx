@@ -10,9 +10,10 @@ import { Button } from '@/shared/components/ui/button';
 import { changePrice } from '@/shared/lib/utils';
 import { Helmet } from 'react-helmet-async';
 import { SkeletonUi } from '@/pages/CartPage/lib/SkeletonUi';
+import { useOrderStore } from '@/shared/stores/order/useOrderStore';
 
 export const CartPage: React.FC = () => {
-    const [selectedItems, setSelectedItems] = useState<number[]>([]);
+    const { selectProducts } = useOrderStore();
     const [totalPrice, setTotalPrice] = useState<number>(0);
     const navigate = useNavigate();
 
@@ -21,38 +22,17 @@ export const CartPage: React.FC = () => {
         queryFn: getCarts,
     });
 
-    const isAllSelected = data && selectedItems.length === data.length;
-
-    const toggleSelectAll = () => {
-        if (isAllSelected) {
-            setSelectedItems([]);
-        } else {
-            if (data) {
-                const allIds = data?.map((item) => item.id);
-                setSelectedItems(allIds);
-            }
-        }
-    };
-
-    const toggleSelectItem = (id: number) => {
-        if (selectedItems.includes(id)) {
-            setSelectedItems(selectedItems.filter((item) => item !== id));
-        } else {
-            setSelectedItems([...selectedItems, id]);
-        }
-    };
-
     useEffect(() => {
         if (data) {
             const calculatedTotalPrice = data
-                .filter((item) => selectedItems.includes(item.id))
+                .filter((item) => selectProducts.includes(item))
                 .reduce((sum, item) => {
                     return sum + parseFloat(item.products.price) * item.quantity;
                 }, 0);
 
             setTotalPrice(calculatedTotalPrice);
         }
-    }, [selectedItems, data]);
+    }, [selectProducts, data]);
 
     if (isLoading) {
         return <SkeletonUi />;
@@ -77,21 +57,14 @@ export const CartPage: React.FC = () => {
                 <div className="mt-5 font-normal">전체 {data?.length}</div>
             </Header>
             <main>
-                <CartForm
-                    data={data!}
-                    isAllSelected={isAllSelected!}
-                    selectedItems={selectedItems}
-                    totalPrice={totalPrice}
-                    toggleSelectAll={toggleSelectAll}
-                    toggleSelectItem={toggleSelectItem}
-                />
+                <CartForm data={data!} />
             </main>
 
             <div className={classes.space} />
             <nav className={classes.footerNav}>
-                <Button className="w-full" disabled={selectedItems.length <= 0} onClick={() => navigate('/order')}>
-                    {selectedItems.length > 0
-                        ? `${changePrice(totalPrice)}원 구매하기 (${selectedItems.length}개)`
+                <Button className="w-full" disabled={selectProducts.length <= 0} onClick={() => navigate('/order')}>
+                    {selectProducts.length > 0
+                        ? `${changePrice(totalPrice)}원 구매하기 (${selectProducts.length}개)`
                         : '구매하기'}
                 </Button>
             </nav>
