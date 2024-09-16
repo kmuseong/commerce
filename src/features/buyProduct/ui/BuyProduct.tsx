@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     Drawer,
     DrawerClose,
@@ -27,29 +27,46 @@ import {
 } from '@/shared/components/ui/select';
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/shared/components/ui/form';
 import { useBuyProductForm } from '@/features/buyProduct/model/validation';
-import { CartFormProps } from '@/entities/cart/type';
+import { CartFormProps, CartProps } from '@/entities/cart/type';
+import { useOrderStore } from '@/shared/stores/order/useOrderStore';
+import { useNavigate } from 'react-router-dom';
 
 export const BuyProduct: React.FC<BuyProductProps> = ({ price, id }) => {
+    const navigate = useNavigate();
     const { user } = useAuthStore();
     const form = useBuyProductForm();
+    const { immediateItem } = useOrderStore();
     const queryClient = useQueryClient();
+    const [navigateToOrder, setNavigateToOrder] = useState(false);
 
     const { mutate, isPending: cartLoading } = useMutation({
         mutationKey: ['addCart'],
         mutationFn: ({ userId, productId, option }: CartFormProps) => addCart({ userId, productId, option }),
-        onSuccess: () => {
+        onSuccess: (cartItem: CartProps) => {
             queryClient.invalidateQueries({
                 queryKey: ['getCarts'],
             });
             queryClient.invalidateQueries({ queryKey: ['getCartLength'] });
+
+            if (navigateToOrder) {
+                immediateItem(cartItem);
+                navigate('/order');
+            }
         },
         onError: (error) => {
             console.log('장바구니 추가 실패', { error });
         },
     });
 
-    const onSubmit = async (optionForm: useBuyProductFormType) => {
-        mutate({ userId: user?.id as string, productId: id, option: optionForm });
+    const immediatePayment = () => {
+        const option = form.getValues();
+        setNavigateToOrder(true);
+        mutate({ userId: user?.id as string, productId: id, option });
+    };
+
+    const onSubmit = async (option: useBuyProductFormType) => {
+        setNavigateToOrder(false);
+        mutate({ userId: user?.id as string, productId: id, option });
     };
 
     if (cartLoading) {
@@ -177,7 +194,9 @@ export const BuyProduct: React.FC<BuyProductProps> = ({ price, id }) => {
                                     </Button>
                                 )}
 
-                                <Button className="w-full">구매하기</Button>
+                                <Button className="w-full" type="button" onClick={immediatePayment}>
+                                    구매하기
+                                </Button>
                             </DrawerFooter>
                         </div>
                     </form>
