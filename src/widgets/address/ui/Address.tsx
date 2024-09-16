@@ -5,7 +5,7 @@ import { AddressProps } from '@/widgets/address/model/type';
 export const Address: React.FC<AddressProps> = ({ item }) => {
     return (
         <div>
-            <div className="flex gap-1">
+            <div className="flex gap-1 pb-3">
                 <div className={classes.name}>{item?.name}</div>
                 {item?.isDefault && (
                     <div className={classes.default}>
