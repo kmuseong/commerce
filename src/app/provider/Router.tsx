@@ -15,6 +15,7 @@ import { OrderPage } from '@/pages/OrderPage';
 import { AddressPage } from '@/pages/AddressPage';
 import { AddressFormPage } from '@/pages/AddressFormPage';
 import { AddressEditPage } from '@/pages/AddressEditPage';
+import { PaymentResultPage } from '@/pages/PaymentResultPage';
 
 const Router: React.FC = () => {
     return (
@@ -46,6 +47,9 @@ const Router: React.FC = () => {
                     <Route path="/my/address" element={<AddressPage />} />
                     <Route path="/my/address/create" element={<AddressFormPage />} />
                     <Route path="/my/address/:id/edit" element={<AddressEditPage />} />
+
+                    {/** 결제 */}
+                    <Route path="/payment/:id" element={<PaymentResultPage />} />
                 </Routes>
             </Layout>
         </BrowserRouter>
