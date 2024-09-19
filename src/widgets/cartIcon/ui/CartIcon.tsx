@@ -15,8 +15,6 @@ export const CartIcon: React.FC = () => {
         queryFn: () => getCartListLength(user?.id as string),
     });
 
-    console.log(data);
-
     return (
         <div className={classes.container}>
             <ShoppingBag onClick={() => navigate(`/cart`)} />
