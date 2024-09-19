@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import { Header } from '@/widgets/header/ui/Header';
 import { CartIcon } from '@/widgets/cartIcon';
 import { Helmet } from 'react-helmet-async';
+import { LOGO_NAME } from '@/shared/config/constants';
 
 export const HomePage: React.FC = () => {
     const { user, setUser } = useAuthStore();
@@ -51,13 +52,13 @@ export const HomePage: React.FC = () => {
     return (
         <>
             <Helmet>
-                <title>로고이름 - 메인</title>
-                <link rel="canonical" href="https://commerce-kappa-coral-63.vercel.app" />
+                <title>{LOGO_NAME} - 메인</title>
+                <link rel="canonical" href={import.meta.env.VITE_WEB_SITE_URL} />
             </Helmet>
 
             <Header>
                 <div className={classes.headerNav}>
-                    <div>로고</div>
+                    <div>{LOGO_NAME}</div>
                     <CartIcon />
                 </div>
                 <div className={classes.search}>

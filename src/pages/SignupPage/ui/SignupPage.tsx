@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
 import { SignupForm } from '@/features/signup';
 import { Helmet } from 'react-helmet-async';
+import { LOGO_NAME } from '@/shared/config/constants';
 
 export const SignupPage: React.FC = () => {
     const navigate = useNavigate();
@@ -11,8 +12,8 @@ export const SignupPage: React.FC = () => {
     return (
         <>
             <Helmet>
-                <title>로고이름 - 회원가입</title>
-                <link rel="canonical" href="https://commerce-kappa-coral-63.vercel.app/signup" />
+                <title>{LOGO_NAME} - 회원가입</title>
+                <link rel="canonical" href={`${import.meta.env.VITE_WEB_SITE_URL}/signup`} />
             </Helmet>
 
             <header className={classes.header}>

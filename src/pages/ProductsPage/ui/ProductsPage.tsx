@@ -7,13 +7,14 @@ import classes from './ProductsPage.module.css';
 import { ProductFiter } from '@/features/productFiter';
 import { CartIcon } from '@/widgets/cartIcon';
 import { Helmet } from 'react-helmet-async';
+import { LOGO_NAME } from '@/shared/config/constants';
 
 export const ProductsPage: React.FC = () => {
     return (
         <>
             <Helmet>
-                <title>로고이름 - 상품리스트페이지</title>
-                <link rel="canonical" href="https://commerce-kappa-coral-63.vercel.app/products" />
+                <title>{LOGO_NAME} - 상품 목록</title>
+                <link rel="canonical" href={`${import.meta.env.VITE_WEB_SITE_URL}/products`} />
             </Helmet>
 
             <Header>

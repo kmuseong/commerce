@@ -9,6 +9,7 @@ import { Payment } from '@/features/payment';
 import { useOrderStore } from '@/shared/stores/order/useOrderStore';
 import { changePrice } from '@/shared/lib/utils';
 import { Checkbox } from '@/shared/components/ui/checkbox';
+import { LOGO_NAME } from '@/shared/config/constants';
 
 export const OrderPage: React.FC = () => {
     const navigate = useNavigate();
@@ -24,7 +25,7 @@ export const OrderPage: React.FC = () => {
     return (
         <>
             <Helmet>
-                <title>로고이름 - 주문</title>
+                <title>{LOGO_NAME} - 주문</title>
                 <link rel="canonical" href={`${import.meta.env.VITE_WEB_SITE_URL}/order`} />
             </Helmet>
 

@@ -24,6 +24,7 @@ import { CartIcon } from '@/widgets/cartIcon';
 import { Helmet } from 'react-helmet-async';
 import { SkeletonUi } from '@/pages/ProductDetailPage/lib/SkeletonUi';
 import { Loading } from '@/widgets/Load';
+import { LOGO_NAME } from '@/shared/config/constants';
 
 export const ProductDetailPage: React.FC = () => {
     const { user } = useAuthStore();
@@ -54,8 +55,8 @@ export const ProductDetailPage: React.FC = () => {
     return (
         <>
             <Helmet>
-                <title>로고이름 - 상품상세페이지</title>
-                <link rel="canonical" href={`https://commerce-kappa-coral-63.vercel.app/products/${id}`} />
+                <title>{LOGO_NAME} - 상품 정보</title>
+                <link rel="canonical" href={`${import.meta.env.VITE_WEB_SITE_URL}/products/${id}`} />
             </Helmet>
 
             <Header>
