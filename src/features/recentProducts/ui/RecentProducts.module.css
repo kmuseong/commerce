@@ -1,0 +1,11 @@
+.title {
+    @apply flex justify-between p-3;
+}
+
+.info {
+    @apply flex flex-col gap-2 pt-2;
+}
+
+.card {
+    @apply cursor-pointer;
+}

@@ -1,0 +1,25 @@
+.nav {
+    @apply flex justify-between;
+}
+
+.list {
+    @apply flex gap-4;
+}
+
+.modal {
+    @apply w-9/12;
+
+    @media all and (min-width: 1024px) {
+        width: 100%;
+    }
+}
+
+.footer {
+    @apply w-full flex gap-3 p-3 fixed bottom-0;
+    background-color: white;
+    border-top: 1px solid #8a8a8a1a;
+
+    @media all and (min-width: 1024px) {
+        width: 600px;
+    }
+}

@@ -1,0 +1,34 @@
+.layout {
+    @apply w-full flex flex-col relative;
+    margin: 0 auto;
+
+    @media all and (min-width: 1024px) {
+        width: 600px;
+    }
+}
+
+.layout::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    right: 50%;
+    transform: translate(300px);
+    z-index: 9999;
+    background-color: #8a8a8a1a;
+}
+
+.layout::before {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translate(-300px);
+    z-index: 9999;
+    background-color: #8a8a8a1a;
+}
