@@ -11,6 +11,7 @@ import { changePrice } from '@/shared/lib/utils';
 import { Helmet } from 'react-helmet-async';
 import { SkeletonUi } from '@/pages/CartPage/lib/SkeletonUi';
 import { useOrderStore } from '@/shared/stores/order/useOrderStore';
+import { LOGO_NAME } from '@/shared/config/constants';
 
 export const CartPage: React.FC = () => {
     const { selectProducts } = useOrderStore();
@@ -41,8 +42,8 @@ export const CartPage: React.FC = () => {
     return (
         <>
             <Helmet>
-                <title>대충커피원두사이트 - 장바구니</title>
-                <link rel="canonical" href="https://commerce-kappa-coral-63.vercel.app/cart" />
+                <title>{LOGO_NAME} - 장바구니</title>
+                <link rel="canonical" href={`${import.meta.env.VITE_WEB_SITE_URL}/cart`} />
             </Helmet>
 
             <Header>

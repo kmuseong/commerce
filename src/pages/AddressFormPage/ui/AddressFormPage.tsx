@@ -12,6 +12,8 @@ import { onAddAddress } from '@/pages/AddressFormPage/api/api';
 import { Loading } from '@/widgets/Load';
 import { useAuthStore } from '@/shared/stores/auth/useAuthStore';
 import { AddressFormType } from '@/entities/address/type';
+import { LOGO_NAME } from '@/shared/config/constants';
+import { Helmet } from 'react-helmet-async';
 
 export const AddressFormPage: React.FC = () => {
     const form = useAddressForm();
@@ -32,6 +34,11 @@ export const AddressFormPage: React.FC = () => {
 
     return (
         <>
+            <Helmet>
+                <title>{LOGO_NAME} - 배송지 추가</title>
+                <link rel="canonical" href={`${import.meta.env.VITE_WEB_SITE_URL}/my/address/create`} />
+            </Helmet>
+
             <header className="flex gap-2 p-3">
                 <ChevronLeft onClick={() => navigate(-1)} />
                 배송지 추가

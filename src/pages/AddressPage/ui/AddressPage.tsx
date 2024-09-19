@@ -10,6 +10,8 @@ import { useAuthStore } from '@/shared/stores/auth/useAuthStore';
 import { Address } from '@/widgets/address';
 import { useOrderStore } from '@/shared/stores/order/useOrderStore';
 import { AddressType } from '@/entities/address/type';
+import { Helmet } from 'react-helmet-async';
+import { LOGO_NAME } from '@/shared/config/constants';
 
 export const AddressPage: React.FC = () => {
     const navigate = useNavigate();
@@ -69,10 +71,16 @@ export const AddressPage: React.FC = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>{LOGO_NAME} - 배송지 목록</title>
+                <link rel="canonical" href={`${import.meta.env.VITE_WEB_SITE_URL}/my/address`} />
+            </Helmet>
+
             <header className="p-4 flex justify-between items-center">
                 <div className="font-bold">배송지 정보</div>
                 <X className="cursor-pointer" onClick={handleCloseWindow} />
             </header>
+
             <main className="flex flex-col gap-3 p-4">
                 <Button variant="outline" className="w-full" onClick={() => navigate('/my/address/create')}>
                     배송지 추가하기
