@@ -1,0 +1,48 @@
+.list {
+    @apply p-4 space-y-2;
+}
+
+.list li {
+    @apply pb-5 border-b border-gray-300;
+}
+
+.list li:last-child {
+    border-bottom: none;
+}
+
+.header {
+    @apply flex justify-between items-center py-2;
+}
+
+.date {
+    @apply font-bold text-lg;
+}
+
+.status {
+    @apply font-bold text-gray-600 py-2;
+    font-size: 13px;
+}
+
+.card {
+    @apply flex gap-3;
+}
+
+.image {
+    @apply w-24 object-cover rounded-md cursor-pointer;
+}
+
+.title {
+    @apply cursor-pointer;
+}
+
+.info {
+    @apply space-y-2 text-sm;
+}
+
+.option {
+    @apply text-sm text-gray-500;
+}
+
+.price {
+    @apply font-bold;
+}

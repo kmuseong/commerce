@@ -39,7 +39,7 @@ export const PaymentResultPage: React.FC = () => {
                     <p>주문이 성공적으로 접수되었습니다.</p>
 
                     <div className="flex gap-4">
-                        <Button className="w-full" variant="outline">
+                        <Button className="w-full" variant="outline" onClick={() => navigate('/my/payment/history')}>
                             주문내역 보기
                         </Button>
                         <Button className="w-full">계속 쇼핑하기</Button>

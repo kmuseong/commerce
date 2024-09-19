@@ -18,3 +18,8 @@ export interface SaveToPaymentProps {
     totalAmount: number;
     userId: string;
 }
+
+export interface SaveToPaymentOptionProps {
+    orderId: number;
+    carts: CartProps[];
+}

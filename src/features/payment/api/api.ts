@@ -1,6 +1,7 @@
 import { CartProps } from '@/entities/cart/type';
+import { OrderReturnType } from '@/entities/order/type';
 import { ProductType } from '@/entities/product/type';
-import { ProcessPaymentProps, SaveToPaymentProps } from '@/features/payment/model/type';
+import { ProcessPaymentProps, SaveToPaymentOptionProps, SaveToPaymentProps } from '@/features/payment/model/type';
 import supabase from '@/supabaseClient';
 import * as PortOne from '@portone/browser-sdk/v2';
 
@@ -73,8 +74,13 @@ export const increaseProductsStock = async (products: ProductType[]) => {
     }
 };
 
-const saveToPayment = async ({ paymentId, addressId, totalAmount, userId }: SaveToPaymentProps) => {
-    const { error } = await supabase
+const saveToPayment = async ({
+    paymentId,
+    addressId,
+    totalAmount,
+    userId,
+}: SaveToPaymentProps): Promise<OrderReturnType> => {
+    const { data, error } = await supabase
         .from('orders')
         .insert([
             {
@@ -82,7 +88,7 @@ const saveToPayment = async ({ paymentId, addressId, totalAmount, userId }: Save
                 address_id: addressId,
                 total_amount: totalAmount,
                 user_id: userId,
-                status: '주문 완료',
+                status: '주문완료',
             },
         ])
         .select();
@@ -90,6 +96,28 @@ const saveToPayment = async ({ paymentId, addressId, totalAmount, userId }: Save
     if (error) {
         throw new Error(error.message);
     }
+
+    return data[0];
+};
+
+const saveToPaymentOption = async ({ orderId, carts }: SaveToPaymentOptionProps) => {
+    const options = carts.map((item) => ({
+        order_id: orderId,
+        grind: item.grind,
+        quantity: item.quantity,
+        roasting: item.roasting,
+        product_id: item.product_id,
+    }));
+
+    const insertPromises = options.map((option) => supabase.from('order_options').insert([option]).select());
+
+    const results = await Promise.all(insertPromises);
+
+    results.forEach(({ error }) => {
+        if (error) {
+            throw new Error(error.message);
+        }
+    });
 };
 
 const deleteCarts = async (carts: CartProps[]) => {
@@ -105,7 +133,6 @@ const deleteCarts = async (carts: CartProps[]) => {
 export const processPayment = async ({ carts, address, userId }: ProcessPaymentProps) => {
     const products = carts.map((item) => item.products);
 
-    // 재고 감소
     await decreaseProductsStock(products);
 
     const totalAmount = carts.reduce((acc, cur) => acc + cur.quantity * parseInt(cur.products.price), 0);
@@ -133,7 +160,14 @@ export const processPayment = async ({ carts, address, userId }: ProcessPaymentP
         throw new Error(response.message);
     }
 
-    await saveToPayment({ paymentId: response?.paymentId as string, addressId: address.id, totalAmount, userId });
+    const order = await saveToPayment({
+        paymentId: response?.paymentId as string,
+        addressId: address.id,
+        totalAmount,
+        userId,
+    });
+
+    await saveToPaymentOption({ orderId: order.id, carts });
     await deleteCarts(carts);
 
     return response;

@@ -25,6 +25,7 @@ export const ProfilePage: React.FC = () => {
             {isAuthenticated ? (
                 <>
                     <Button onClick={logOut}>로그아웃</Button>
+                    <Button onClick={() => navigate('/my/payment/history')}>주문 내역</Button>
                     {user?.isSeller && <Button onClick={() => navigate('/create')}>제품등록</Button>}
                 </>
             ) : (
