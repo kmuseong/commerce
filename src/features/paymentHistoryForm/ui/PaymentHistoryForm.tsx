@@ -6,6 +6,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import classes from './PaymentHistoryForm.module.css';
 import { formatDate } from 'date-fns';
+import { SkeletonUi } from '@/features/paymentHistoryForm/lib/SkeletonUi';
 
 export const PaymentHistoryForm: React.FC = () => {
     const { user } = useAuthStore();
@@ -21,7 +22,7 @@ export const PaymentHistoryForm: React.FC = () => {
     };
 
     if (isLoading) {
-        return <div>로딩중..</div>;
+        return <SkeletonUi />;
     }
 
     return (
