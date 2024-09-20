@@ -1,6 +1,8 @@
 # ☕ Beanery
-> Beanery는 커피 원두를 판매하는 커머스 사이트입니다.<br/>
+<img src="https://github.com/user-attachments/assets/422c9aa9-0bcd-4b6c-8245-1ab21c18051b" alt="main_img"/>
 
+## 소개
+Beanery는 커피 원두를 판매하는 커머스 사이트입니다.<br/>
 [원두구매하러가기](https://commerce-kappa-coral-63.vercel.app)
 
 <br>   
