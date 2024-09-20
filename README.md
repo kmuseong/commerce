@@ -1,5 +1,5 @@
 # ☕ Beanery
-<img src="https://github.com/user-attachments/assets/3a4e5034-bcf3-4beb-816e-9cea478c89e9" alt="main_img"/>
+<img src="https://github.com/user-attachments/assets/3a4e5034-bcf3-4beb-816e-9cea478c89e9" alt="main_img" width=60%/>
 
 ## 소개
 Beanery는 커피 원두를 판매하는 커머스 사이트입니다.<br/>
