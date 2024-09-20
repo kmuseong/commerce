@@ -30,10 +30,15 @@ Beanery는 커피 원두를 판매하는 커머스 사이트입니다.<br/>
 <br>  
 
 ## 주요기능
-<details><summary>로그인/회원가입
-</summary>
+<details><summary>로그인/회원가입</summary>
+  
+###### 로그인
+<img src="https://github.com/user-attachments/assets/8b0831d5-d7ca-49fc-8326-d2753b2a9daa" alt="login_img" height=500px/><br> 
 
-여기 작성
+###### 회원가입
+<img src="https://github.com/user-attachments/assets/d305dbcd-b694-43e8-a67c-4124dfb3c614" alt="signup_img" height=500px/><br> 
+
+
 </details>
 
 <details><summary>상품
