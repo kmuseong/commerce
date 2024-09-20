@@ -44,7 +44,15 @@ Beanery는 커피 원두를 판매하는 커머스 사이트입니다.<br/>
 <details><summary>상품
 </summary>
 
-여기 작성
+###### 생성
+<img src="https://github.com/user-attachments/assets/02cd337a-17cc-48a3-bfcb-995f3a2bfc67" alt="signup_img" height=500px/><br> 
+
+###### 수정
+<img src="https://github.com/user-attachments/assets/d305dbcd-b694-43e8-a67c-4124dfb3c614" alt="signup_img" height=500px/><br> 
+
+###### 삭제
+<img src="https://github.com/user-attachments/assets/d305dbcd-b694-43e8-a67c-4124dfb3c614" alt="signup_img" height=500px/><br> 
+
 </details>
 
 <details><summary>장바구니
@@ -66,6 +74,21 @@ Beanery는 커피 원두를 판매하는 커머스 사이트입니다.<br/>
 </summary>
 
 여기 작성
+</details>
+
+<details><summary>상품 수정 시 이미지수정 오류
+</summary>
+
+ ##### 문제
+ > 이미지 추가가 아닌 변경하지 않거나 기존 이미지를 삭제하고 요청했을 경우 오류가 발생했습니다.
+ ##### 원인
+ > 이미지 수정 방법이 기존 이미지를 삭제한 후 새로운 이미지를 추가하도록 구현되어 있었으나, 수정 페이지가 렌더링될 때 이미지의 URL을 File 형태로 상태에 저장하는 과정에서 size와 type 값이 비어 있어서 오류가 발생했습니다.
+ ##### 해결
+ > 이미지의 URL을 이용하여 다시 File 객체로 변환하였습니다. 이미지 파일을 다시 다운로드하고 Blob으로 변환한 후, 그 Blob을 사용하여 새로운 File 객체를 생성하였습니다. 그 결과 성공적으로 요청이 되었습니다.
+
+[자세히](https://github.com/kmuseong/commerce/wiki/%5B%ED%8A%B8%EB%9F%AC%EB%B8%94-%EC%8A%88%ED%8C%85%5D-%EC%83%81%ED%92%88-%EC%88%98%EC%A0%95-%EC%8B%9C-%EC%9D%B4%EB%AF%B8%EC%A7%80%EC%88%98%EC%A0%95-%EC%98%A4%EB%A5%98
+) 
+
 </details>
 
 <br> 
