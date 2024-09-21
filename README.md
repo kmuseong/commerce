@@ -133,7 +133,7 @@ Beanery는 커피 원두를 판매하는 커머스 사이트입니다.<br/>
 <br> 
 
 ## 아키텍쳐
-<img src="https://github.com/user-attachments/assets/7f61d2e1-2610-49e3-a6fd-e7dbd67450a7" alt="main_img" width=60%/><br> 
+<img src="https://github.com/user-attachments/assets/7f61d2e1-2610-49e3-a6fd-e7dbd67450a7" alt="architecture_img" width=60%/><br> 
 
 <br> 
 
