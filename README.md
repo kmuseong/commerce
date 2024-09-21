@@ -41,8 +41,7 @@ Beanery는 커피 원두를 판매하는 커머스 사이트입니다.<br/>
 
 </details>
 
-<details><summary>상품
-</summary>
+<details><summary>상품</summary>
 
 ###### 생성
 <img src="https://github.com/user-attachments/assets/02cd337a-17cc-48a3-bfcb-995f3a2bfc67" alt="product_create_img" height=500px/><br> 
@@ -55,16 +54,43 @@ Beanery는 커피 원두를 판매하는 커머스 사이트입니다.<br/>
 
 </details>
 
-<details><summary>장바구니
-</summary>
+<details><summary>장바구니</summary>
 
-여기 작성
+###### 생성
+<img src="https://github.com/user-attachments/assets/55a482ac-e989-468d-8720-a4f0571aace6" alt="cart_add_img" height=500px/><br> 
+
+###### 수정
+<img src="https://github.com/user-attachments/assets/f6be65ea-7367-43aa-a2b7-b80b78f3fd56" alt="cart_edit_img" height=500px/><br> 
+
+###### 삭제
+<img src="https://github.com/user-attachments/assets/64c6c61b-a48b-4025-b106-6ccfdefcca5e" alt="cart_delete_img" height=500px/><br> 
+
+  
 </details>
 
-<details><summary>결제
+<details><summary>배송지
 </summary>
 
-여기 작성
+###### 생성
+<img src="https://github.com/user-attachments/assets/de38d054-a6ee-42a3-ba76-58475512d22f" alt="address_add_img" height=500px/><br> 
+
+###### 수정
+<img src="https://github.com/user-attachments/assets/c0703a70-ec1c-4f97-85e0-f7f52e1c04e5" alt="address_edit_img" height=500px/><br> 
+
+###### 삭제
+<img src="https://github.com/user-attachments/assets/eaf92a13-8c59-424f-b85c-ca87efa68de8" alt="address_delete_img" height=500px/><br> 
+
+
+</details>
+
+<details><summary>결제</summary>
+
+###### 결제
+<img src="https://github.com/user-attachments/assets/45917f86-99a8-44b2-9571-d0f0b6ad8bc3" alt="payment_img" height=500px/><br> 
+
+###### 결제정보
+<img src="https://github.com/user-attachments/assets/d1cfc76d-a2c8-43ca-82c5-ec91eb586cb9" alt="payment_info_img" height=500px/><br> 
+
 </details>
 
 <br> 
