@@ -3,6 +3,9 @@
 
 ## 소개
 Beanery는 커피 원두를 판매하는 커머스 사이트입니다.<br/>
+
+<br>   
+
 [원두구매하러가기](https://commerce-kappa-coral-63.vercel.app) 
 |  | 아이디 | 비밀번호 |
 | --- | --- | --- |
