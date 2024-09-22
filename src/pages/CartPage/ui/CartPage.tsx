@@ -2,7 +2,6 @@ import { CartForm } from '@/features/cart';
 import { getCarts } from '@/features/cart/api/api';
 import { Header } from '@/widgets/header';
 import { useQuery } from '@tanstack/react-query';
-import { ChevronLeft, Home } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import classes from './CartPage.module.css';
@@ -12,6 +11,7 @@ import { Helmet } from 'react-helmet-async';
 import { SkeletonUi } from '@/pages/CartPage/lib/SkeletonUi';
 import { useOrderStore } from '@/shared/stores/order/useOrderStore';
 import { LOGO_NAME } from '@/shared/config/constants';
+import { BackIcon, HomeIcon } from '@/widgets/icon';
 
 export const CartPage: React.FC = () => {
     const { selectProducts } = useOrderStore();
@@ -49,11 +49,11 @@ export const CartPage: React.FC = () => {
             <Header>
                 <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                        <ChevronLeft onClick={() => navigate(-1)} />
+                        <BackIcon />
                         <div>장바구니</div>
                     </div>
 
-                    <Home onClick={() => navigate('/')} />
+                    <HomeIcon />
                 </div>
                 <div className="mt-5 font-normal">전체 {data?.length}</div>
             </Header>
