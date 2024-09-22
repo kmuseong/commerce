@@ -19,7 +19,7 @@ export const ProductsPage: React.FC = () => {
 
             <Header>
                 <div className={classes.headerNav}>
-                    <div>로고</div>
+                    <div>{LOGO_NAME}</div>
                     <CartIcon />
                 </div>
                 <div className={classes.search}>

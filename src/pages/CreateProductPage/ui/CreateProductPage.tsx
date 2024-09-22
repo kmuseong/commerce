@@ -1,14 +1,11 @@
 import { CreateProductForm } from '@/features/createProduct';
 import classes from './CreateProductPage.module.css';
 import React from 'react';
-import { ChevronLeft } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { LOGO_NAME } from '@/shared/config/constants';
+import { BackIcon } from '@/widgets/icon';
 
 export const CreateProductPage: React.FC = () => {
-    const navigate = useNavigate();
-
     return (
         <>
             <Helmet>
@@ -17,7 +14,7 @@ export const CreateProductPage: React.FC = () => {
             </Helmet>
 
             <header className={classes.header}>
-                <ChevronLeft onClick={() => navigate(-1)} />
+                <BackIcon />
                 상품추가
             </header>
             <CreateProductForm />

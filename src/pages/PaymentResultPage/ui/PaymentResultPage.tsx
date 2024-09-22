@@ -1,7 +1,6 @@
 import { confrimPayment } from '@/pages/PaymentResultPage/api/api';
 import { Header } from '@/widgets/header';
 import { useQuery } from '@tanstack/react-query';
-import { ChevronLeft } from 'lucide-react';
 import React from 'react';
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import classes from './PaymentResultPage.module.css';
@@ -9,6 +8,7 @@ import { Button } from '@/shared/components/ui/button';
 import { changePrice } from '@/shared/lib/utils';
 import { Helmet } from 'react-helmet-async';
 import { LOGO_NAME } from '@/shared/config/constants';
+import { BackIcon } from '@/widgets/icon';
 
 export const PaymentResultPage: React.FC = () => {
     const location = useLocation();
@@ -36,7 +36,7 @@ export const PaymentResultPage: React.FC = () => {
             <div className="flex flex-col h-screen justify-around">
                 <Header>
                     <div className="flex gap-2">
-                        <ChevronLeft onClick={() => navigate('/')} />
+                        <BackIcon />
                         결제
                     </div>
                 </Header>

@@ -1,13 +1,12 @@
 import classes from './ProductEditPage.module.css';
 import React from 'react';
 import { ProductEditForm } from '@/features/productEdit';
-import { ChevronLeft } from 'lucide-react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { LOGO_NAME } from '@/shared/config/constants';
+import { BackIcon } from '@/widgets/icon';
 
 export const ProductEditPage: React.FC = () => {
-    const navigate = useNavigate();
     const { id } = useParams();
 
     return (
@@ -18,7 +17,7 @@ export const ProductEditPage: React.FC = () => {
             </Helmet>
 
             <header className={classes.header}>
-                <ChevronLeft onClick={() => navigate(-1)} />
+                <BackIcon />
                 상품수정
             </header>
             <ProductEditForm />

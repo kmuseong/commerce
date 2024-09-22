@@ -1,7 +1,6 @@
 import { Button } from '@/shared/components/ui/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/shared/components/ui/form';
 import { Input } from '@/shared/components/ui/input';
-import { ChevronLeft } from 'lucide-react';
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Checkbox } from '@/shared/components/ui/checkbox';
@@ -13,6 +12,7 @@ import { updateAddress } from '@/pages/AddressEditPage/api/api';
 import { Loading } from '@/widgets/Load';
 import { Helmet } from 'react-helmet-async';
 import { LOGO_NAME } from '@/shared/config/constants';
+import { BackIcon } from '@/widgets/icon';
 
 export const AddressEditPage: React.FC = () => {
     const { id } = useParams();
@@ -43,9 +43,10 @@ export const AddressEditPage: React.FC = () => {
             </Helmet>
 
             <header className="flex gap-2 p-3">
-                <ChevronLeft onClick={() => navigate(-1)} />
+                <BackIcon />
                 배송지 추가
             </header>
+
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2 p-4">
                     <FormField

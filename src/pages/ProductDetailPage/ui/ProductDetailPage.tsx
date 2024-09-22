@@ -3,7 +3,7 @@ import React from 'react';
 import classes from './ProductDetailPage.module.css';
 import { Button } from '@/shared/components/ui/button';
 import { useAuthStore } from '@/shared/stores/auth/useAuthStore';
-import { ChevronLeft, Search, Home } from 'lucide-react';
+import { Search } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { getProduct, onDeleteProduct } from '@/pages/ProductDetailPage/api/api';
@@ -25,6 +25,7 @@ import { Helmet } from 'react-helmet-async';
 import { SkeletonUi } from '@/pages/ProductDetailPage/lib/SkeletonUi';
 import { Loading } from '@/widgets/Load';
 import { LOGO_NAME } from '@/shared/config/constants';
+import { BackIcon, HomeIcon } from '@/widgets/icon';
 
 export const ProductDetailPage: React.FC = () => {
     const { user } = useAuthStore();
@@ -61,11 +62,11 @@ export const ProductDetailPage: React.FC = () => {
 
             <Header>
                 <div className={classes.nav}>
-                    <ChevronLeft onClick={() => navigate(-1)} />
+                    <BackIcon />
 
                     <div className={classes.list}>
                         <Search />
-                        <Home onClick={() => navigate('/')} />
+                        <HomeIcon />
                         <CartIcon />
                     </div>
                 </div>
