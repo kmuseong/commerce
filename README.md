@@ -70,11 +70,11 @@ Beanery는 커피 원두를 판매하는 커머스 사이트입니다.<br/>
 <br>  
 
 ## ERD
-[dbdiagram.io](https://dbdiagram.io/d/commerce-erd-66c2e66e8b4bb5230e727805)
 
-이유적기
+[DB설계 상세보기](https://github.com/kmuseong/commerce/wiki/%5BERD%5D-DB%EC%84%A4%EA%B3%84)
 
 <img src="https://github.com/user-attachments/assets/1bf1ce2e-f951-4f55-883c-2c780daa7d8c" alt="login_img" height=500px/><br> 
+[ERD 상세보기 - dbdiagram.io](https://dbdiagram.io/d/commerce-erd-66c2e66e8b4bb5230e727805)
 
 <div align="right">
   
@@ -170,7 +170,7 @@ Beanery는 커피 원두를 판매하는 커머스 사이트입니다.<br/>
  ##### 해결
  > 이미지 저장 API 요청을 병합 처리하여 로딩 시간을 거의 2배 단축시켰습니다. 이를 통해 여러 이미지를 동시에 처리할 수 있게 되어 전체적인 등록 속도가 개선되었습니다.
 
-[자세히](https://github.com/kmuseong/commerce/wiki/%5B%ED%8A%B8%EB%9F%AC%EB%B8%94%EC%8A%88%ED%8C%85%5D-%EC%83%81%ED%92%88-%EC%83%9D%EC%84%B1-%EC%8B%9C-%EB%A1%9C%EB%94%A9-%EC%A7%80%EC%97%B0) 
+[상세보기](https://github.com/kmuseong/commerce/wiki/%5B%ED%8A%B8%EB%9F%AC%EB%B8%94%EC%8A%88%ED%8C%85%5D-%EC%83%81%ED%92%88-%EC%83%9D%EC%84%B1-%EC%8B%9C-%EB%A1%9C%EB%94%A9-%EC%A7%80%EC%97%B0) 
 </details>
 
 <details><summary>상품 수정 시 이미지수정 오류
@@ -183,7 +183,7 @@ Beanery는 커피 원두를 판매하는 커머스 사이트입니다.<br/>
  ##### 해결
  > 이미지의 URL을 이용하여 다시 File 객체로 변환하였습니다. 이미지 파일을 다시 다운로드하고 Blob으로 변환한 후, 그 Blob을 사용하여 새로운 File 객체를 생성하였습니다. 그 결과 성공적으로 요청이 되었습니다.
 
-[자세히](https://github.com/kmuseong/commerce/wiki/%5B%ED%8A%B8%EB%9F%AC%EB%B8%94%EC%8A%88%ED%8C%85%5D-%EC%83%81%ED%92%88-%EC%88%98%EC%A0%95-%EC%8B%9C-%EC%9D%B4%EB%AF%B8%EC%A7%80%EC%88%98%EC%A0%95-%EC%98%A4%EB%A5%98) 
+[상세보기](https://github.com/kmuseong/commerce/wiki/%5B%ED%8A%B8%EB%9F%AC%EB%B8%94%EC%8A%88%ED%8C%85%5D-%EC%83%81%ED%92%88-%EC%88%98%EC%A0%95-%EC%8B%9C-%EC%9D%B4%EB%AF%B8%EC%A7%80%EC%88%98%EC%A0%95-%EC%98%A4%EB%A5%98) 
 
 </details>
 
