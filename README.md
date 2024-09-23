@@ -58,6 +58,8 @@ Beanery는 커피 원두를 판매하는 커머스 사이트입니다.<br/>
 ###### Development
 <img src="https://img.shields.io/badge/typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt='typescript_img'> <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt='react_img'> <img src="https://img.shields.io/badge/zustand-0E76FD?style=for-the-badge&logo=zustand&logoColor=black" alt='zustand_img'> <img src="https://img.shields.io/badge/reactquery-FF4154?style=for-the-badge&logo=reactquery&logoColor=white" alt='reactquery_img'> <img src="https://img.shields.io/badge/tailwindcss-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" alt='tailwindcss_img'> <img src="https://img.shields.io/badge/supabase-3FCF8E?style=for-the-badge&logo=supabase&logoColor=black" alt='supabase_img'>
 
+[의사결졍](https://github.com/kmuseong/commerce/wiki/%5B%EA%B8%B0%EC%88%A0%EC%8A%A4%ED%83%9D%5D-%EA%B8%B0%EC%88%A0%EC%A0%81-%EC%9D%98%EC%82%AC%EA%B2%B0%EC%A0%95) 
+
 <div align="right">
   
 [목차로](#목차)
