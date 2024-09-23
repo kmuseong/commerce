@@ -17,7 +17,7 @@
 
 <br>
 
-## 소개
+## 소개  
 Beanery는 커피 원두를 판매하는 커머스 사이트입니다.<br/>
 
 <br>   
@@ -28,10 +28,22 @@ Beanery는 커피 원두를 판매하는 커머스 사이트입니다.<br/>
 | 판매자 | vksaowk@gmail.com | qwer1234 |
 | 구매자 | rnaowk@gmail.com | qwer1234 |
 
+<div align="right">
+  
+[목차로](#목차)
+
+</div>
+
 <br>   
 
 ## 개발기간
 2024.08.19 ~ 현재 진행 중
+
+<div align="right">
+  
+[목차로](#목차)
+
+</div>
 
 <br>   
 
@@ -45,6 +57,12 @@ Beanery는 커피 원두를 판매하는 커머스 사이트입니다.<br/>
 
 ###### Development
 <img src="https://img.shields.io/badge/typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt='typescript_img'> <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt='react_img'> <img src="https://img.shields.io/badge/zustand-0E76FD?style=for-the-badge&logo=zustand&logoColor=black" alt='zustand_img'> <img src="https://img.shields.io/badge/reactquery-FF4154?style=for-the-badge&logo=reactquery&logoColor=white" alt='reactquery_img'> <img src="https://img.shields.io/badge/tailwindcss-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" alt='tailwindcss_img'> <img src="https://img.shields.io/badge/supabase-3FCF8E?style=for-the-badge&logo=supabase&logoColor=black" alt='supabase_img'>
+
+<div align="right">
+  
+[목차로](#목차)
+
+</div>
 
 <br>  
 
@@ -115,6 +133,12 @@ Beanery는 커피 원두를 판매하는 커머스 사이트입니다.<br/>
 
 </details>
 
+<div align="right">
+  
+[목차로](#목차)
+
+</div>
+
 <br> 
 
 ## 트러블슈팅
@@ -146,10 +170,22 @@ Beanery는 커피 원두를 판매하는 커머스 사이트입니다.<br/>
 
 </details>
 
+<div align="right">
+  
+[목차로](#목차)
+
+</div>
+
 <br> 
 
 ## 아키텍쳐
 <img src="https://github.com/user-attachments/assets/7f61d2e1-2610-49e3-a6fd-e7dbd67450a7" alt="architecture_img" width=60%/><br> 
+
+<div align="right">
+  
+[목차로](#목차)
+
+</div>
 
 <br> 
 
@@ -186,13 +222,24 @@ Beanery는 커피 원두를 판매하는 커머스 사이트입니다.<br/>
 ```
  <br> 
 
+<div align="right">
+  
+[목차로](#목차)
+
+</div>
+
 ## 설치
 ```bash
-  git clone https://github.com/kmuseong/commerce.git
+git clone https://github.com/kmuseong/commerce.git
 ```
 ```bash
-  yarn install
-  yarn dev
+yarn install
+yarn dev
 ```
+<div align="right">
+  
+[목차로](#목차)
+
+</div>
 
 
