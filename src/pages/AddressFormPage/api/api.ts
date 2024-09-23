@@ -15,7 +15,23 @@ const resetDefault = async (isDefault: boolean, userId: string) => {
     }
 };
 
+const checkExistingAddresses = async (userId: string) => {
+    const { data, error } = await supabase.from('address').select('*').eq('user_id', userId);
+
+    if (error) {
+        throw new Error(error.message);
+    }
+
+    return data;
+};
+
 export const onAddAddress = async ({ form, userId }: AddressProps) => {
+    const existingAddresses = await checkExistingAddresses(userId!);
+
+    if (existingAddresses.length === 0) {
+        form.isDefault = true;
+    }
+
     await resetDefault(form.isDefault!, userId!);
 
     const { error } = await supabase
