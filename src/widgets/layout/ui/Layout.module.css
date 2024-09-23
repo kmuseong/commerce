@@ -7,19 +7,7 @@
     }
 }
 
-.layout::after {
-    content: '';
-    display: block;
-    width: 1px;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    right: 50%;
-    transform: translate(300px);
-    z-index: 9999;
-    background-color: #8a8a8a1a;
-}
-
+.layout::after,
 .layout::before {
     content: '';
     display: block;
@@ -27,8 +15,23 @@
     height: 100%;
     position: fixed;
     top: 0;
-    left: 50%;
-    transform: translate(-300px);
     z-index: 9999;
     background-color: #8a8a8a1a;
+}
+
+.layout::after {
+    right: 50%;
+    transform: translate(300px);
+}
+
+.layout::before {
+    left: 50%;
+    transform: translate(-300px);
+}
+
+@media all and (max-width: 1024px) {
+    .layout::after,
+    .layout::before {
+        display: none;
+    }
 }
