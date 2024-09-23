@@ -1,6 +1,22 @@
 # ☕ Beanery
 <img src="https://github.com/user-attachments/assets/3a4e5034-bcf3-4beb-816e-9cea478c89e9" alt="main_img" width=60%/>
 
+## 목차
+1. [소개](#소개)
+2. [개발기간](#개발기간)
+3. [기술스택](#기술스택)
+4. [주요기능](#주요기능)
+5. [트러블슈팅](#트러블슈팅)
+6. [아키텍쳐](#아키텍쳐)
+7. [폴더구조](#폴더구조)
+8. [설치](#설치)
+
+<br>
+
+---
+
+<br>
+
 ## 소개
 Beanery는 커피 원두를 판매하는 커머스 사이트입니다.<br/>
 
@@ -14,12 +30,12 @@ Beanery는 커피 원두를 판매하는 커머스 사이트입니다.<br/>
 
 <br>   
 
-## 개발 기간
+## 개발기간
 2024.08.19 ~ 현재 진행 중
 
 <br>   
 
-## 기술 스택
+## 기술스택
 
 ###### Environment
 <img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white" alt='git_img'> <img src="https://img.shields.io/badge/github-ffffff?style=for-the-badge&logo=github&logoColor=black" alt='github_img'>
@@ -32,7 +48,7 @@ Beanery는 커피 원두를 판매하는 커머스 사이트입니다.<br/>
 
 <br>  
 
-## 주요기능 v1.0.0
+## 주요기능
 <details><summary>로그인/회원가입</summary>
   
 ###### 로그인
