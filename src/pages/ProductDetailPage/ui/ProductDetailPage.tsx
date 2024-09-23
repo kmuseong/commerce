@@ -26,6 +26,7 @@ import { SkeletonUi } from '@/pages/ProductDetailPage/lib/SkeletonUi';
 import { Loading } from '@/widgets/Load';
 import { LOGO_NAME } from '@/shared/config/constants';
 import { BackIcon, HomeIcon } from '@/widgets/icon';
+import { Footer } from '@/widgets/footer';
 
 export const ProductDetailPage: React.FC = () => {
     const { user } = useAuthStore();
@@ -74,8 +75,8 @@ export const ProductDetailPage: React.FC = () => {
 
             <ProductDetailForm data={data!} />
 
-            <div className={classes.footer}>
-                {user?.isSeller ? (
+            <Footer>
+                {user?.isSeller && user.id === data?.user_id ? (
                     <>
                         <Button className="w-full" onClick={() => navigate(`/product/${id}/edit`)}>
                             수정하기
@@ -104,7 +105,7 @@ export const ProductDetailPage: React.FC = () => {
                 ) : (
                     <BuyProduct price={data?.price as string} id={data?.id as number} />
                 )}
-            </div>
+            </Footer>
 
             {isPending && <Loading>상품을 삭제하고 있습니다</Loading>}
         </>
