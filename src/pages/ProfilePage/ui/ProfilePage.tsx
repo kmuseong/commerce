@@ -1,4 +1,5 @@
 import { Button } from '@/shared/components/ui/button';
+import { LOGO_NAME } from '@/shared/config/constants';
 import { useAuthStore } from '@/shared/stores/auth/useAuthStore';
 import supabase from '@/supabaseClient';
 import React from 'react';
@@ -18,8 +19,8 @@ export const ProfilePage: React.FC = () => {
     return (
         <>
             <Helmet>
-                <title>로고이름 - 마이페이지</title>
-                <link rel="canonical" href="https://commerce-kappa-coral-63.vercel.app/profile" />
+                <title>{LOGO_NAME} - 마이페이지</title>
+                <link rel="canonical" href={`${import.meta.env.VITE_WEB_SITE_URL}/profile`} />
             </Helmet>
 
             {isAuthenticated ? (

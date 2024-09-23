@@ -15,7 +15,7 @@ export const useBuyProductForm = () => {
         defaultValues: {
             roasting: '',
             grind: '',
-            quantity: 0,
+            quantity: 1,
         },
     });
 

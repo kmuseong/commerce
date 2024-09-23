@@ -1,7 +1,7 @@
 import { ProductType } from '@/entities/product/type';
 import supabase from '@/supabaseClient';
 
-export const getProduct = async (id: string): Promise<ProductType | null> => {
+export const getProduct = async (id: string): Promise<ProductType> => {
     const { data, error } = await supabase
         .from('products')
         .select(
@@ -13,13 +13,14 @@ export const getProduct = async (id: string): Promise<ProductType | null> => {
             )
         `
         )
-        .eq('id', id);
+        .eq('id', id)
+        .single();
 
     if (error) {
         throw new Error(error.message);
     }
 
-    return data?.[0];
+    return data;
 };
 
 export const onDeleteProduct = async (id: string) => {

@@ -6,21 +6,12 @@
     @apply flex justify-between;
 }
 
-.search {
-    @apply flex items-center gap-3;
+.headerNav > div {
+    @apply text-lg pb-1;
 }
 
-.footerNav {
-    @apply w-full p-3 fixed bottom-0 flex justify-around;
-    background-color: rgb(242, 242, 242);
-
-    svg {
-        color: #7d7d7d;
-    }
-
-    @media all and (min-width: 1024px) {
-        width: 600px;
-    }
+.search {
+    @apply flex items-center gap-3;
 }
 
 .navButton {

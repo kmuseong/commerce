@@ -18,6 +18,7 @@ export interface ProductType {
     weight: string;
     stock_quantity: string;
     product_images: ProductImageType[];
+    user_id: string;
 }
 
 export interface ProductImageType {

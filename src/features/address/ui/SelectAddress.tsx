@@ -41,7 +41,7 @@ export const SelectAddress: React.FC = () => {
 
     return (
         <div className="flex flex-col gap-2 p-4">
-            <Address item={address || data!} />
+            {!data ? '배송지가 없습니다. 배송지를 추가해 주세요.' : <Address item={address || data} />}
 
             <Button onClick={openAddressWindow} variant="outline">
                 주소설정

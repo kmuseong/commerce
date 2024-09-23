@@ -10,7 +10,7 @@ export const getRecentroducts = async () => {
           product_images(*)
         `
         )
-        .limit(4);
+        .limit(6);
 
     if (error) {
         throw new Error(error.message);

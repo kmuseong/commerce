@@ -7,18 +7,22 @@ import classes from './ProductsPage.module.css';
 import { ProductFiter } from '@/features/productFiter';
 import { CartIcon } from '@/widgets/cartIcon';
 import { Helmet } from 'react-helmet-async';
+import { LOGO_NAME } from '@/shared/config/constants';
+import { Footer } from '@/widgets/footer';
+import { HomeIcon } from '@/widgets/icon';
+import { CategoryIcon, ProfileIcon } from '@/widgets/icon/ui/Icon';
 
 export const ProductsPage: React.FC = () => {
     return (
         <>
             <Helmet>
-                <title>로고이름 - 상품리스트페이지</title>
-                <link rel="canonical" href="https://commerce-kappa-coral-63.vercel.app/products" />
+                <title>{LOGO_NAME} - 상품 목록</title>
+                <link rel="canonical" href={`${import.meta.env.VITE_WEB_SITE_URL}/products`} />
             </Helmet>
 
             <Header>
                 <div className={classes.headerNav}>
-                    <div>로고</div>
+                    <div>{LOGO_NAME}</div>
                     <CartIcon />
                 </div>
                 <div className={classes.search}>
@@ -30,6 +34,14 @@ export const ProductsPage: React.FC = () => {
             <ProductFiter />
 
             <Products />
+
+            <Footer>
+                <CategoryIcon>리스트</CategoryIcon>
+
+                <HomeIcon>홈</HomeIcon>
+
+                <ProfileIcon>마이페이지</ProfileIcon>
+            </Footer>
         </>
     );
 };

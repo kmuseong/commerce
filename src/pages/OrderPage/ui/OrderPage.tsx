@@ -1,17 +1,17 @@
 import { Header } from '@/widgets/header';
-import { ChevronLeft } from 'lucide-react';
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import classes from './OrderPage.module.css';
 import { SelectAddress } from '@/features/address';
 import { Payment } from '@/features/payment';
 import { useOrderStore } from '@/shared/stores/order/useOrderStore';
 import { changePrice } from '@/shared/lib/utils';
 import { Checkbox } from '@/shared/components/ui/checkbox';
+import { LOGO_NAME } from '@/shared/config/constants';
+import { BackIcon } from '@/widgets/icon';
 
 export const OrderPage: React.FC = () => {
-    const navigate = useNavigate();
     const { selectProducts } = useOrderStore();
     const [isChecked, setIsChecked] = useState<boolean>(false);
 
@@ -24,13 +24,13 @@ export const OrderPage: React.FC = () => {
     return (
         <>
             <Helmet>
-                <title>로고이름 - 주문</title>
+                <title>{LOGO_NAME} - 주문</title>
                 <link rel="canonical" href={`${import.meta.env.VITE_WEB_SITE_URL}/order`} />
             </Helmet>
 
             <Header>
                 <div className={classes.nav}>
-                    <ChevronLeft onClick={() => navigate(-1)} />
+                    <BackIcon />
                     주문서
                 </div>
             </Header>

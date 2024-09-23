@@ -105,6 +105,12 @@ export const ProductEditForm: React.FC = () => {
         }
     };
 
+    const urlToFile = async (url: string, filename: string, mimeType: string): Promise<File> => {
+        const response = await fetch(url);
+        const blob = await response.blob();
+        return new File([blob], filename, { type: mimeType });
+    };
+
     useEffect(() => {
         if (data) {
             reset({
@@ -117,8 +123,19 @@ export const ProductEditForm: React.FC = () => {
                 stock_quantity: String(data.stock_quantity),
             });
 
-            setPreviews(data.product_images.map((img) => img.image_url));
-            setSelectedFiles(data.product_images.map((img) => new File([], img.image_url)));
+            const loadImages = async () => {
+                const imageFiles = await Promise.all(
+                    data.product_images.map(async (img) => {
+                        const file = await urlToFile(img.image_url, 'image.jpg', 'image/jpeg');
+                        return file;
+                    })
+                );
+
+                setSelectedFiles(imageFiles);
+                setPreviews(data.product_images.map((img) => img.image_url));
+            };
+
+            loadImages();
         }
     }, [data, reset]);
 

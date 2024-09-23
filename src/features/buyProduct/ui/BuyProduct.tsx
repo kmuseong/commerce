@@ -93,7 +93,7 @@ export const BuyProduct: React.FC<BuyProductProps> = ({ price, id }) => {
                             render={({ field }) => (
                                 <FormItem>
                                     <FormControl>
-                                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                        <Select onValueChange={field.onChange} value={field.value}>
                                             <SelectTrigger>
                                                 <SelectValue placeholder="로스팅 선택" />
                                             </SelectTrigger>
@@ -117,7 +117,7 @@ export const BuyProduct: React.FC<BuyProductProps> = ({ price, id }) => {
                             render={({ field }) => (
                                 <FormItem>
                                     <FormControl>
-                                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                        <Select onValueChange={field.onChange} value={field.value}>
                                             <SelectTrigger>
                                                 <SelectValue placeholder="분쇄도 선택" />
                                             </SelectTrigger>

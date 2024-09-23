@@ -3,7 +3,7 @@ import React from 'react';
 import classes from './ProductDetailPage.module.css';
 import { Button } from '@/shared/components/ui/button';
 import { useAuthStore } from '@/shared/stores/auth/useAuthStore';
-import { ChevronLeft, Search, Home } from 'lucide-react';
+import { Search } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { getProduct, onDeleteProduct } from '@/pages/ProductDetailPage/api/api';
@@ -24,6 +24,9 @@ import { CartIcon } from '@/widgets/cartIcon';
 import { Helmet } from 'react-helmet-async';
 import { SkeletonUi } from '@/pages/ProductDetailPage/lib/SkeletonUi';
 import { Loading } from '@/widgets/Load';
+import { LOGO_NAME } from '@/shared/config/constants';
+import { BackIcon, HomeIcon } from '@/widgets/icon';
+import { Footer } from '@/widgets/footer';
 
 export const ProductDetailPage: React.FC = () => {
     const { user } = useAuthStore();
@@ -54,17 +57,17 @@ export const ProductDetailPage: React.FC = () => {
     return (
         <>
             <Helmet>
-                <title>로고이름 - 상품상세페이지</title>
-                <link rel="canonical" href={`https://commerce-kappa-coral-63.vercel.app/products/${id}`} />
+                <title>{LOGO_NAME} - 상품 정보</title>
+                <link rel="canonical" href={`${import.meta.env.VITE_WEB_SITE_URL}/products/${id}`} />
             </Helmet>
 
             <Header>
                 <div className={classes.nav}>
-                    <ChevronLeft onClick={() => navigate(-1)} />
+                    <BackIcon />
 
                     <div className={classes.list}>
                         <Search />
-                        <Home onClick={() => navigate('/')} />
+                        <HomeIcon />
                         <CartIcon />
                     </div>
                 </div>
@@ -72,8 +75,8 @@ export const ProductDetailPage: React.FC = () => {
 
             <ProductDetailForm data={data!} />
 
-            <div className={classes.footer}>
-                {user?.isSeller ? (
+            <Footer>
+                {user?.isSeller && user.id === data?.user_id ? (
                     <>
                         <Button className="w-full" onClick={() => navigate(`/product/${id}/edit`)}>
                             수정하기
@@ -102,7 +105,7 @@ export const ProductDetailPage: React.FC = () => {
                 ) : (
                     <BuyProduct price={data?.price as string} id={data?.id as number} />
                 )}
-            </div>
+            </Footer>
 
             {isPending && <Loading>상품을 삭제하고 있습니다</Loading>}
         </>

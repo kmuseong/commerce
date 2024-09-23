@@ -1,6 +1,7 @@
 import React from 'react';
 import classes from './Address.module.css';
 import { AddressProps } from '@/widgets/address/model/type';
+import { formatPhoneNumber } from '@/shared/lib/utils';
 
 export const Address: React.FC<AddressProps> = ({ item }) => {
     return (
@@ -19,7 +20,7 @@ export const Address: React.FC<AddressProps> = ({ item }) => {
                     <div>{item?.detailAddress}</div>
                 </div>
 
-                <div>{item?.phone}</div>
+                <div>{formatPhoneNumber(item?.phone as string)}</div>
             </div>
         </div>
     );
