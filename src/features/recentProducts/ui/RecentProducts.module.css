@@ -1,5 +1,9 @@
 .title {
-    @apply flex justify-between p-3;
+    @apply flex justify-between p-3 text-lg items-center;
+}
+
+.title > a {
+    @apply text-sm underline text-gray-500;
 }
 
 .info {
