@@ -2,12 +2,10 @@ import React from 'react';
 import classes from './RecentProducts.module.css';
 import { useQuery } from '@tanstack/react-query';
 import { getRecentroducts } from '@/features/recentProducts/api/api';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Item } from '@/widgets/item';
 
 export const RecentProducts: React.FC = () => {
-    const navigate = useNavigate();
-
     const { data, isLoading } = useQuery({
         queryKey: ['getRecnetProducts'],
         queryFn: getRecentroducts,
@@ -20,9 +18,9 @@ export const RecentProducts: React.FC = () => {
     return (
         <div>
             <div className={classes.title}>
-                <div>최신 상품</div> <span onClick={() => navigate('/products')}>더보기</span>
+                <div className="font-bold">최신 상품</div> <Link to="/products">더보기</Link>
             </div>
-            <div className="grid grid-cols-2 gap-4 p-4">
+            <div className="grid grid-cols-3">
                 {data?.map((item) => (
                     <Item key={item.id} item={item} />
                 ))}

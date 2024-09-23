@@ -1,6 +1,6 @@
 .header {
-    @apply w-full fixed p-3 flex flex-col gap-2 z-10;
-    background-color: rgb(242, 242, 242);
+    @apply w-full fixed p-4 flex flex-col gap-2 z-10 text-white;
+    background-color: #4e3b31;
     font-weight: bold;
 
     svg {

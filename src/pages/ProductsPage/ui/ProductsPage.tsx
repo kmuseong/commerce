@@ -8,6 +8,9 @@ import { ProductFiter } from '@/features/productFiter';
 import { CartIcon } from '@/widgets/cartIcon';
 import { Helmet } from 'react-helmet-async';
 import { LOGO_NAME } from '@/shared/config/constants';
+import { Footer } from '@/widgets/footer';
+import { HomeIcon } from '@/widgets/icon';
+import { CategoryIcon, ProfileIcon } from '@/widgets/icon/ui/Icon';
 
 export const ProductsPage: React.FC = () => {
     return (
@@ -31,6 +34,14 @@ export const ProductsPage: React.FC = () => {
             <ProductFiter />
 
             <Products />
+
+            <Footer>
+                <CategoryIcon>리스트</CategoryIcon>
+
+                <HomeIcon>홈</HomeIcon>
+
+                <ProfileIcon>마이페이지</ProfileIcon>
+            </Footer>
         </>
     );
 };

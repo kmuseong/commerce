@@ -12,6 +12,18 @@ export const getAddress = async (id: number): Promise<RequestAddressType | null>
 };
 
 export const updateAddress = async ({ form, id }: AddressProps) => {
+    if (form.isDefault) {
+        const { error: updateError } = await supabase
+            .from('address')
+            .update({ is_default: false })
+            .eq('is_default', true)
+            .neq('id', id);
+
+        if (updateError) {
+            throw new Error(updateError.message);
+        }
+    }
+
     const { data, error } = await supabase
         .from('address')
         .update({

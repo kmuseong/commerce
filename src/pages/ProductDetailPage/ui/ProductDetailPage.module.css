@@ -7,19 +7,9 @@
 }
 
 .modal {
-    @apply w-9/12;
-
-    @media all and (min-width: 1024px) {
-        width: 100%;
-    }
+    width: 70%;
 }
 
-.footer {
-    @apply w-full flex gap-3 p-3 fixed bottom-0;
-    background-color: white;
-    border-top: 1px solid #8a8a8a1a;
-
-    @media all and (min-width: 1024px) {
-        width: 600px;
-    }
+html body[data-scroll-locked] {
+    margin-right: 0 !important; /* margin-right 값을 0으로 설정 */
 }
