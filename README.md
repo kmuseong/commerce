@@ -152,7 +152,7 @@ Beanery는 커피 원두를 판매하는 커머스 사이트입니다.<br/>
  ##### 해결
  > 이미지 저장 API 요청을 병합 처리하여 로딩 시간을 거의 2배 단축시켰습니다. 이를 통해 여러 이미지를 동시에 처리할 수 있게 되어 전체적인 등록 속도가 개선되었습니다.
 
-[자세히](https://github.com/kmuseong/commerce/wiki/%5B%ED%8A%B8%EB%9F%AC%EB%B8%94-%EC%8A%88%ED%8C%85%5D-%EC%83%81%ED%92%88-%EC%83%9D%EC%84%B1-%EC%8B%9C-%EB%A1%9C%EB%94%A9-%EC%A7%80%EC%97%B0) 
+[자세히](https://github.com/kmuseong/commerce/wiki/%5B%ED%8A%B8%EB%9F%AC%EB%B8%94%EC%8A%88%ED%8C%85%5D-%EC%83%81%ED%92%88-%EC%83%9D%EC%84%B1-%EC%8B%9C-%EB%A1%9C%EB%94%A9-%EC%A7%80%EC%97%B0) 
 </details>
 
 <details><summary>상품 수정 시 이미지수정 오류
