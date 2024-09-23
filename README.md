@@ -49,7 +49,7 @@ Beanery는 커피 원두를 판매하는 커머스 사이트입니다.<br/>
 
 ## 기술스택
 
-[의사결정](https://github.com/kmuseong/commerce/wiki/%5B%EA%B8%B0%EC%88%A0%EC%8A%A4%ED%83%9D%5D-%EA%B8%B0%EC%88%A0%EC%A0%81-%EC%9D%98%EC%82%AC%EA%B2%B0%EC%A0%95)
+[기술적 의사결정](https://github.com/kmuseong/commerce/wiki/%5B%EA%B8%B0%EC%88%A0%EC%8A%A4%ED%83%9D%5D-%EA%B8%B0%EC%88%A0%EC%A0%81-%EC%9D%98%EC%82%AC%EA%B2%B0%EC%A0%95)
 
 ###### Environment
 <img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white" alt='git_img'> <img src="https://img.shields.io/badge/github-ffffff?style=for-the-badge&logo=github&logoColor=black" alt='github_img'>
