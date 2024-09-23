@@ -1,0 +1,8 @@
+.footer {
+    @apply w-full flex gap-3 p-3 fixed bottom-0 justify-around text-gray-500 bg-white font-bold;
+    border-top: 1px solid #8a8a8a1a;
+
+    @media all and (min-width: 1024px) {
+        width: 600px;
+    }
+}
