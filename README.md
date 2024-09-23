@@ -165,8 +165,7 @@ Beanery는 커피 원두를 판매하는 커머스 사이트입니다.<br/>
  ##### 해결
  > 이미지의 URL을 이용하여 다시 File 객체로 변환하였습니다. 이미지 파일을 다시 다운로드하고 Blob으로 변환한 후, 그 Blob을 사용하여 새로운 File 객체를 생성하였습니다. 그 결과 성공적으로 요청이 되었습니다.
 
-[자세히](https://github.com/kmuseong/commerce/wiki/%5B%ED%8A%B8%EB%9F%AC%EB%B8%94-%EC%8A%88%ED%8C%85%5D-%EC%83%81%ED%92%88-%EC%88%98%EC%A0%95-%EC%8B%9C-%EC%9D%B4%EB%AF%B8%EC%A7%80%EC%88%98%EC%A0%95-%EC%98%A4%EB%A5%98
-) 
+[자세히](https://github.com/kmuseong/commerce/wiki/%5B%ED%8A%B8%EB%9F%AC%EB%B8%94%EC%8A%88%ED%8C%85%5D-%EC%83%81%ED%92%88-%EC%88%98%EC%A0%95-%EC%8B%9C-%EC%9D%B4%EB%AF%B8%EC%A7%80%EC%88%98%EC%A0%95-%EC%98%A4%EB%A5%98) 
 
 </details>
 
