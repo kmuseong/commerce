@@ -74,7 +74,7 @@ Beanery는 커피 원두를 판매하는 커머스 사이트입니다.<br/>
 
 이유적기
 
-<img src="https://github.com/user-attachments/assets/8cc371cc-c6ef-4179-9393-f6b939ec12cd" alt="login_img" height=500px/><br> 
+<img src="https://github.com/user-attachments/assets/1bf1ce2e-f951-4f55-883c-2c780daa7d8c" alt="login_img" height=500px/><br> 
 
 <div align="right">
   
