@@ -4,7 +4,6 @@ import { Header } from '@/widgets/header/ui/Header';
 import { Search } from 'lucide-react';
 import React from 'react';
 import classes from './ProductsPage.module.css';
-import { ProductFiter } from '@/features/productFiter';
 import { CartIcon } from '@/widgets/cartIcon';
 import { Helmet } from 'react-helmet-async';
 import { LOGO_NAME } from '@/shared/config/constants';
@@ -31,11 +30,9 @@ export const ProductsPage: React.FC = () => {
                 </div>
             </Header>
 
-            <ProductFiter />
-
             <Products />
 
-            <Footer>
+            <Footer className="text-white">
                 <CategoryIcon>리스트</CategoryIcon>
 
                 <HomeIcon>홈</HomeIcon>

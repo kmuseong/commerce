@@ -17,7 +17,7 @@ export const CartIcon: React.FC = () => {
 
     return (
         <div className={classes.container}>
-            <ShoppingBag onClick={() => navigate(`/cart`)} />
+            <ShoppingBag strokeWidth={1} onClick={() => navigate(`/cart`)} />
             {data! > 0 && <div className={classes.count}>{data}</div>}
         </div>
     );

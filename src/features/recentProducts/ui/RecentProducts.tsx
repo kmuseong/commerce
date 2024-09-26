@@ -18,9 +18,13 @@ export const RecentProducts: React.FC = () => {
     return (
         <div>
             <div className={classes.title}>
-                <div className="font-bold">최신 상품</div> <Link to="/products">더보기</Link>
+                <div>
+                    <p>Recent Products</p>
+                    <p className="text-sm text-gray-400">최신 상품</p>
+                </div>
+                <Link to="/products">더보기</Link>
             </div>
-            <div className="grid grid-cols-3">
+            <div className="grid grid-cols-3 p-4 gap-2">
                 {data?.map((item) => (
                     <Item key={item.id} item={item} />
                 ))}

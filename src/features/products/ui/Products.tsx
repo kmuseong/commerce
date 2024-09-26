@@ -1,3 +1,4 @@
+import { ProductFiter } from '@/features/productFiter';
 import { getProducts } from '@/features/products/api/api';
 import { SkeletonUi } from '@/features/products/lib/SkeletonUi';
 import { Item } from '@/widgets/item';
@@ -15,10 +16,14 @@ export const Products: React.FC = () => {
     }
 
     return (
-        <div className="grid grid-cols-3">
-            {data?.map((item) => (
-                <Item key={item.id} item={item} />
-            ))}
-        </div>
+        <>
+            <ProductFiter length={data?.length as number} />
+
+            <div className="grid grid-cols-3 p-4 gap-4">
+                {data?.map((item) => (
+                    <Item key={item.id} item={item} />
+                ))}
+            </div>
+        </>
     );
 };
