@@ -1,26 +1,27 @@
 import React, { useRef } from 'react';
 import { Carousel, CarouselContent, CarouselItem } from '@/shared/components/ui/carousel';
 import Autoplay from 'embla-carousel-autoplay';
+import image1 from '@/assets/event/event-1.png';
+import image2 from '@/assets/event/event-2.png';
+
+const eventList = [image1, image2];
 
 export const EventCarousel: React.FC = () => {
-    const plugin = useRef(Autoplay({ delay: 2000, stopOnInteraction: true }));
+    const plugin = useRef(Autoplay({ delay: 5000, stopOnInteraction: false }));
 
     return (
-        <Carousel
-            plugins={[plugin.current]}
-            className="w-full"
-            onMouseEnter={plugin.current.stop}
-            onMouseLeave={plugin.current.reset}
-        >
-            <CarouselContent>
-                {Array.from({ length: 4 }).map((_, index) => (
+        <Carousel plugins={[plugin.current]} className="w-full h-full lg:min-h-[650px]">
+            <CarouselContent className="lg:min-h-[650px]">
+                {eventList.map((item, index) => (
                     <CarouselItem key={index}>
-                        <div>
-                            <div>
-                                <div className="flex aspect-square items-center justify-center p-6">
-                                    <span className="text-4xl font-semibold">{index + 1}</span>
-                                </div>
-                            </div>
+                        <div className="h-full w-full">
+                            <img
+                                src={item}
+                                alt={`event_image_${index}`}
+                                width={'700px'}
+                                height={'700px'}
+                                className="object-cover h-full"
+                            />
                         </div>
                     </CarouselItem>
                 ))}

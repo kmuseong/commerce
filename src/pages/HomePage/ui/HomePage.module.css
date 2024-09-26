@@ -3,11 +3,12 @@
 }
 
 .headerNav {
-    @apply flex justify-between;
+    @apply flex justify-between items-center;
 }
 
 .headerNav > div {
-    @apply text-lg pb-1;
+    font-size: 24px;
+    font-family: 'Limelight', sans-serif;
 }
 
 .search {
