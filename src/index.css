@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -63,7 +62,6 @@
 @layer base {
     * {
         @apply border-border;
-        font-family: 'Nanum Gothic', system-ui;
     }
 
     html {
@@ -72,6 +70,7 @@
 
     body {
         @apply h-full bg-background text-foreground;
+        font-family: 'Jost', 'Noto Sans KR';
     }
 
     #root {
