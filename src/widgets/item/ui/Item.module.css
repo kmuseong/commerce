@@ -3,22 +3,23 @@
 }
 
 .info {
-    @apply flex flex-col gap-3 p-2 justify-between;
+    @apply flex flex-col gap-3 py-2 justify-between;
 }
 
 .card {
-    @apply cursor-pointer flex flex-col;
-}
-
-.name {
-    @apply font-bold text-sm line-clamp-2;
+    @apply cursor-pointer flex flex-col text-sm lg:text-sm text-gray-500;
+    width: 100%;
+    max-width: 300px;
 }
 
 .price {
-    @apply font-bold text-sm;
+    @apply text-[#795f57] font-bold;
+}
+
+.name {
+    @apply line-clamp-2;
 }
 
 .image {
-    @apply object-cover flex-1;
-    height: 200px;
+    @apply object-cover h-auto;
 }

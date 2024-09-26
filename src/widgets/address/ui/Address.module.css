@@ -7,10 +7,7 @@
 }
 
 .default > p {
-    padding: 0 2px;
-    background-color: #e6e6e6;
-    color: rgb(111, 111, 111);
-    font-size: 10px;
+    @apply bg-[#937664] text-white rounded-sm px-1 text-[11px];
 }
 
 .content {

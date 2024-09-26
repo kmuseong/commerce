@@ -75,7 +75,7 @@ export const ProductDetailPage: React.FC = () => {
 
             <ProductDetailForm data={data!} />
 
-            <Footer>
+            <Footer className="bg-[#fff]">
                 {user?.isSeller && user.id === data?.user_id ? (
                     <>
                         <Button className="w-full" onClick={() => navigate(`/product/${id}/edit`)}>

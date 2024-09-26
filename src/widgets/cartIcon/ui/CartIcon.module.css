@@ -3,10 +3,10 @@
 }
 
 .count {
-    @apply absolute w-4 h-4 top-0 right-0 flex items-center justify-center;
+    @apply absolute w-4 h-4 flex items-end justify-center top-0 right-0 bg-[#795f57] text-center;
     border-radius: 50%;
-    background-color: red;
     color: white;
-    font-size: 11px;
+    font-size: 10px;
     transform: translate(45%, -45%);
+    font-family: 'Nanum Gothic', system-ui;
 }

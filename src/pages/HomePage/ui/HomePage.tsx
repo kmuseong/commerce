@@ -2,9 +2,8 @@ import { getUserAndSaveToDB } from '@/features/login/api/api';
 import { useAuthStore } from '@/shared/stores/auth/useAuthStore';
 import supabase from '@/supabaseClient';
 import React, { useEffect } from 'react';
-import { Search, Home, User, TextSearchIcon } from 'lucide-react';
+import { Search } from 'lucide-react';
 import classes from './HomePage.module.css';
-import { Input } from '@/shared/components/ui/input';
 import { EventCarousel } from '@/features/eventCarousel';
 import { RecentProducts } from '@/features/recentProducts';
 import { useNavigate } from 'react-router-dom';
@@ -13,6 +12,8 @@ import { CartIcon } from '@/widgets/cartIcon';
 import { Helmet } from 'react-helmet-async';
 import { LOGO_NAME } from '@/shared/config/constants';
 import { Footer } from '@/widgets/footer';
+import { HomeIcon } from '@/widgets/icon';
+import { CategoryIcon, ProfileIcon } from '@/widgets/icon/ui/Icon';
 
 export const HomePage: React.FC = () => {
     const { user, setUser } = useAuthStore();
@@ -60,11 +61,10 @@ export const HomePage: React.FC = () => {
             <Header>
                 <div className={classes.headerNav}>
                     <div>{LOGO_NAME}</div>
-                    <CartIcon />
-                </div>
-                <div className={classes.search}>
-                    <Input placeholder="검색어를 입력해주세요." />
-                    <Search />
+                    <div className="flex gap-2">
+                        <Search strokeWidth={1} />
+                        <CartIcon />
+                    </div>
                 </div>
             </Header>
 
@@ -73,20 +73,17 @@ export const HomePage: React.FC = () => {
                 <RecentProducts />
             </main>
 
-            <Footer>
+            <Footer className="text-white">
                 <div className={classes.navButton} onClick={() => navigate(`/products`)}>
-                    <TextSearchIcon />
-                    <div>리스트</div>
+                    <CategoryIcon>리스트</CategoryIcon>
                 </div>
 
                 <div className={classes.navButton} onClick={() => navigate(`/`)}>
-                    <Home />
-                    <div>홈</div>
+                    <HomeIcon>홈</HomeIcon>
                 </div>
 
                 <div className={classes.navButton} onClick={() => navigate(`/profile`)}>
-                    <User />
-                    <div>마이페이지</div>
+                    <ProfileIcon>마이</ProfileIcon>
                 </div>
             </Footer>
         </>

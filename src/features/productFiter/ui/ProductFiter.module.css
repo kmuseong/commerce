@@ -1,3 +1,11 @@
+.info {
+    @apply text-gray-500;
+}
+
+.info > span {
+    @apply text-[#795f57] font-bold;
+}
+
 .list {
-    @apply flex gap-2 p-3;
+    @apply flex items-center justify-between gap-2 p-3;
 }
