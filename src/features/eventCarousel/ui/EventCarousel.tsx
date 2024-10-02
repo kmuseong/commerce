@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
 import { Carousel, CarouselContent, CarouselItem } from '@/shared/components/ui/carousel';
 import Autoplay from 'embla-carousel-autoplay';
-import image1 from '@/assets/event/event-1.png';
-import image2 from '@/assets/event/event-2.png';
+import image1 from '@/assets/event/event-1.webp';
+import image2 from '@/assets/event/event-2.webp';
 
 const eventList = [image1, image2];
 
@@ -18,9 +18,9 @@ export const EventCarousel: React.FC = () => {
                             <img
                                 src={item}
                                 alt={`event_image_${index}`}
-                                width={'700px'}
+                                width={'1200px'}
                                 height={'700px'}
-                                className="object-cover h-full"
+                                className="object-cover min-w-[1200px] h-full"
                             />
                         </div>
                     </CarouselItem>
