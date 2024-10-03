@@ -20,7 +20,7 @@ export const EventCarousel: React.FC = () => {
                                 alt={`event_image_${index}`}
                                 width={'1200px'}
                                 height={'700px'}
-                                className="object-cover min-w-[1200px] h-full"
+                                className="object-cover w-full h-full"
                             />
                         </div>
                     </CarouselItem>
