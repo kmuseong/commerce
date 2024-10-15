@@ -1,14 +1,19 @@
 import { CartProps } from '@/entities/cart/type';
 import supabase from '@/supabaseClient';
 
-export const getCarts = async (): Promise<CartProps[] | null> => {
-    const { data, error } = await supabase.from('carts').select(`
+export const getCarts = async (userId: string): Promise<CartProps[] | null> => {
+    const { data, error } = await supabase
+        .from('carts')
+        .select(
+            `
           *,
           products (
             *,
             product_images (*)
           )
-        `);
+        `
+        )
+        .eq('user_id', userId);
 
     if (error) {
         throw new Error(error.message);

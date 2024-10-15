@@ -6,7 +6,7 @@ import { Search } from 'lucide-react';
 import classes from './HomePage.module.css';
 import { EventCarousel } from '@/features/eventCarousel';
 import { RecentProducts } from '@/features/recentProducts';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Header } from '@/widgets/header/ui/Header';
 import { CartIcon } from '@/widgets/cartIcon';
 import { Helmet } from 'react-helmet-async';
@@ -70,6 +70,14 @@ export const HomePage: React.FC = () => {
 
             <main className="h-full">
                 <EventCarousel />
+
+                <div className={classes.title}>
+                    <div>
+                        <p>Recent Products</p>
+                        <p className="text-sm text-gray-400">최신 상품</p>
+                    </div>
+                    <Link to="/products">더보기</Link>
+                </div>
                 <RecentProducts />
             </main>
 

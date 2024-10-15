@@ -1,17 +1,3 @@
-.title {
-    @apply flex justify-between m-3 py-2 items-end text-[#795f57] mt-10;
-    border-bottom: 1px solid #795f57;
-    font-size: 22px;
-}
-
-.title > a {
-    @apply text-sm text-gray-500;
-}
-
-.info {
-    @apply flex flex-col gap-2 pt-2;
-}
-
-.card {
-    @apply cursor-pointer;
+.list {
+    @apply grid grid-cols-3 p-4 gap-2;
 }
