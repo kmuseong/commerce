@@ -7,7 +7,6 @@ import classes from './HomePage.module.css';
 import { EventCarousel } from '@/features/eventCarousel';
 import { RecentProducts } from '@/features/recentProducts';
 import { Link, useNavigate } from 'react-router-dom';
-import { Header } from '@/widgets/header/ui/Header';
 import { CartIcon } from '@/widgets/cartIcon';
 import { Helmet } from 'react-helmet-async';
 import { LOGO_NAME } from '@/shared/config/constants';
@@ -58,15 +57,18 @@ export const HomePage: React.FC = () => {
                 <link rel="canonical" href={import.meta.env.VITE_WEB_SITE_URL} />
             </Helmet>
 
-            <Header>
-                <div className={classes.headerNav}>
-                    <div>{LOGO_NAME}</div>
-                    <div className="flex gap-2">
-                        <Search strokeWidth={1} />
+            <header className={classes.header}>
+                <div>
+                    <div className="text-white">{LOGO_NAME}</div>
+                    <div className={classes.button}>
                         <CartIcon />
                     </div>
                 </div>
-            </Header>
+                <div className={classes.search}>
+                    <Search color="#825a3d" />
+                    <input />
+                </div>
+            </header>
 
             <main className="h-full">
                 <EventCarousel />
@@ -81,7 +83,7 @@ export const HomePage: React.FC = () => {
                 <RecentProducts />
             </main>
 
-            <Footer className="text-white">
+            <Footer>
                 <div className={classes.navButton} onClick={() => navigate(`/products`)}>
                     <CategoryIcon>리스트</CategoryIcon>
                 </div>

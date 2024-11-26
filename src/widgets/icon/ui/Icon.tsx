@@ -9,7 +9,7 @@ export const HomeIcon: React.FC<IconProps> = ({ children }) => {
 
     return (
         <div className={classes.icon} onClick={() => navigate('/')}>
-            <Home strokeWidth={1} />
+            <Home fill="white" strokeWidth={1} />
             {children && <div>{children}</div>}
         </div>
     );
@@ -31,7 +31,7 @@ export const ProfileIcon: React.FC<IconProps> = ({ children }) => {
 
     return (
         <div className={classes.icon} onClick={() => navigate(`/profile`)}>
-            <User strokeWidth={1} />
+            <User fill="white" strokeWidth={1} />
             {children && <div>{children}</div>}
         </div>
     );
@@ -42,7 +42,7 @@ export const CategoryIcon: React.FC<IconProps> = ({ children }) => {
 
     return (
         <div className={classes.icon} onClick={() => navigate(`/products`)}>
-            <TextSearchIcon strokeWidth={1} />
+            <TextSearchIcon fill="white" strokeWidth={1} />
             {children && <div>{children}</div>}
         </div>
     );

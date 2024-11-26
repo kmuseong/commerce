@@ -1,7 +1,3 @@
 .icon {
-    @apply flex flex-col gap-1 justify-center items-center cursor-pointer;
-
-    div {
-        font-size: 10px;
-    }
+    @apply flex flex-col gap-1 justify-center items-center cursor-pointer text-[#898989];
 }

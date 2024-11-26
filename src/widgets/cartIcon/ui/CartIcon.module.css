@@ -3,7 +3,7 @@
 }
 
 .count {
-    @apply absolute w-4 h-4 flex items-end justify-center top-0 right-0 bg-[#795f57] text-center;
+    @apply absolute w-4 h-4 flex justify-center top-0 right-0 bg-[#ff0000] text-center;
     border-radius: 50%;
     color: white;
     font-size: 10px;
