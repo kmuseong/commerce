@@ -1,3 +1,12 @@
 .icon {
-    @apply flex flex-col gap-1 justify-center items-center cursor-pointer text-[#898989];
+    @apply flex flex-col gap-1 justify-center items-center cursor-pointer text-[#898989] text-xs;
+}
+
+.border {
+    @apply p-1 bg-white rounded-full;
+    border: 1px solid #898989;
+
+    @media all and (min-width: 1024px) {
+        padding: 0.5rem;
+    }
 }
