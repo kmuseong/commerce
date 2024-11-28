@@ -19,7 +19,7 @@ export const ProductsPage: React.FC = () => {
                 <link rel="canonical" href={`${import.meta.env.VITE_WEB_SITE_URL}/products`} />
             </Helmet>
 
-            <Header>
+            <Header isSpace>
                 <div className={classes.headerNav}>
                     <div>{LOGO_NAME}</div>
                     <CartIcon />
@@ -30,14 +30,16 @@ export const ProductsPage: React.FC = () => {
                 </div>
             </Header>
 
-            <Products />
+            <main>
+                <Products />
+            </main>
 
-            <Footer className="text-white">
+            <Footer>
                 <CategoryIcon>리스트</CategoryIcon>
 
                 <HomeIcon>홈</HomeIcon>
 
-                <ProfileIcon>마이페이지</ProfileIcon>
+                <ProfileIcon>마이</ProfileIcon>
             </Footer>
         </>
     );

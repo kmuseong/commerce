@@ -1,8 +1,10 @@
 import { HeaderProps } from '@/widgets/header/model/type';
-import React, { useEffect, useRef, useState } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import classes from './Header.module.css';
 
-export const Header: React.FC<HeaderProps> = ({ children }) => {
+export const Header: FC<HeaderProps> = ({ children, isSpace = false }) => {
+    const [isScrolled, setIsScrolled] = useState(false);
+
     const headerRef = useRef<HTMLDivElement | null>(null);
     const [headerHeight, setHeaderHeight] = useState(0);
 
@@ -24,12 +26,24 @@ export const Header: React.FC<HeaderProps> = ({ children }) => {
         };
     }, []);
 
+    useEffect(() => {
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 100);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
     return (
         <header>
-            <div ref={headerRef} className={classes.header}>
+            <div ref={headerRef} className={`${classes.header} ${isScrolled ? classes.scrolled : ''}`}>
                 {children}
             </div>
-            <div style={{ height: `${headerHeight}px` }} className="w-full"></div>
+            {isSpace && <div style={{ height: `${headerHeight}px` }} className="w-full" />}
         </header>
     );
 };

@@ -34,8 +34,8 @@ export const PaymentResultPage: React.FC = () => {
             </Helmet>
 
             <div className="flex flex-col h-screen justify-around">
-                <Header>
-                    <div className="flex gap-2">
+                <Header isSpace>
+                    <div className="flex gap-5">
                         <BackIcon />
                         결제
                     </div>

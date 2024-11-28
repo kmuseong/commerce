@@ -1,0 +1,4 @@
+.footer {
+    @apply w-full flex gap-3 p-4 fixed bottom-0 justify-around border-t border-[#0000001a] bg-white lg:w-[600px] rounded-t-3xl;
+    box-shadow: 0px -2px 6px -5px gray;
+}

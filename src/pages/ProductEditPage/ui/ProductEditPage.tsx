@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { LOGO_NAME } from '@/shared/config/constants';
 import { BackIcon } from '@/widgets/icon';
+import { Header } from '@/widgets/header';
 
 export const ProductEditPage: React.FC = () => {
     const { id } = useParams();
@@ -16,10 +17,12 @@ export const ProductEditPage: React.FC = () => {
                 <link rel="canonical" href={`${import.meta.env.VITE_WEB_SITE_URL}/products/${id}/edit`} />
             </Helmet>
 
-            <header className={classes.header}>
-                <BackIcon />
-                상품수정
-            </header>
+            <Header isSpace>
+                <div className={classes.header}>
+                    <BackIcon />
+                    상품수정
+                </div>
+            </Header>
             <ProductEditForm />
         </>
     );

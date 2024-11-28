@@ -3,10 +3,19 @@
 }
 
 .count {
-    @apply absolute w-4 h-4 flex items-end justify-center top-0 right-0 bg-[#795f57] text-center;
+    @apply absolute w-4 h-4 flex justify-center top-0 right-0 bg-[#ff0000] text-center;
     border-radius: 50%;
     color: white;
     font-size: 10px;
     transform: translate(45%, -45%);
     font-family: 'Nanum Gothic', system-ui;
+}
+
+.border {
+    @apply p-1 bg-white rounded-full;
+    border: 1px solid #898989;
+
+    @media all and (min-width: 1024px) {
+        padding: 0.5rem;
+    }
 }

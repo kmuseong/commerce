@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { FooterProps } from '@/widgets/footer/model/type';
+import classes from './Footer.module.css';
 
-export const Footer: React.FC<FooterProps> = ({ children, className }) => {
+export const Footer: React.FC<FooterProps> = ({ children }) => {
     const footerRef = useRef<HTMLDivElement | null>(null);
     const [footerHeight, setFooterHeight] = useState(0);
 
@@ -25,10 +26,7 @@ export const Footer: React.FC<FooterProps> = ({ children, className }) => {
 
     return (
         <footer>
-            <div
-                ref={footerRef}
-                className={`w-full flex gap-3 p-2 fixed bottom-0 justify-around border-t border-[#8a8a8a1a] bg-[#937664] lg:w-[600px] ${className} !important`}
-            >
+            <div ref={footerRef} className={classes.footer}>
                 {children}
             </div>
             <div style={{ height: `${footerHeight}px` }} className="w-full" />

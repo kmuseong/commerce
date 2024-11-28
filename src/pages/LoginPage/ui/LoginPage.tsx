@@ -14,7 +14,7 @@ export const LoginPage: React.FC = () => {
                 <link rel="canonical" href={`${import.meta.env.VITE_WEB_SITE_URL}/login`} />
             </Helmet>
 
-            <Header>
+            <Header isSpace>
                 <div className={classes.header}>
                     <BackIcon />
                     로그인

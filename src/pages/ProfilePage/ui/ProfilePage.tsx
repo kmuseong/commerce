@@ -32,7 +32,7 @@ export const ProfilePage: React.FC = () => {
                 <link rel="canonical" href={`${import.meta.env.VITE_WEB_SITE_URL}/profile`} />
             </Helmet>
 
-            <Header>
+            <Header isSpace>
                 <div className={classes.header}>
                     <BackIcon />
                     마이페이지

@@ -1,23 +1,15 @@
-.headerNav {
-    @apply flex justify-between items-center;
+.header {
+    @apply p-5 rounded-b-3xl space-y-4;
+    background-color: #825a3d;
 }
 
-.headerNav > div {
-    font-size: 24px;
-    font-family: 'Limelight', sans-serif;
-}
-
-.search {
-    @apply flex items-center gap-3;
+.header > div {
+    @apply flex justify-between;
 }
 
 .navButton {
     @apply flex flex-col gap-1 justify-center items-center;
     cursor: pointer;
-
-    div {
-        font-size: 10px;
-    }
 }
 
 .title {
@@ -30,10 +22,15 @@
     @apply text-sm text-gray-500;
 }
 
-.info {
-    @apply flex flex-col gap-2 pt-2;
+.button {
+    @apply cursor-pointer text-[#A67B5B] p-[5px] rounded-lg;
+    background-color: #a67b5b;
 }
 
-.card {
-    @apply cursor-pointer;
+.search {
+    @apply flex gap-2 bg-white rounded-xl overflow-hidden p-2;
+}
+
+.search > input {
+    @apply w-full outline-none;
 }

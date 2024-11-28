@@ -6,8 +6,7 @@ import { Search } from 'lucide-react';
 import classes from './HomePage.module.css';
 import { EventCarousel } from '@/features/eventCarousel';
 import { RecentProducts } from '@/features/recentProducts';
-import { Link, useNavigate } from 'react-router-dom';
-import { Header } from '@/widgets/header/ui/Header';
+import { Link } from 'react-router-dom';
 import { CartIcon } from '@/widgets/cartIcon';
 import { Helmet } from 'react-helmet-async';
 import { LOGO_NAME } from '@/shared/config/constants';
@@ -17,7 +16,6 @@ import { CategoryIcon, ProfileIcon } from '@/widgets/icon/ui/Icon';
 
 export const HomePage: React.FC = () => {
     const { user, setUser } = useAuthStore();
-    const navigate = useNavigate();
 
     useEffect(() => {
         const checkSession = async () => {
@@ -58,15 +56,18 @@ export const HomePage: React.FC = () => {
                 <link rel="canonical" href={import.meta.env.VITE_WEB_SITE_URL} />
             </Helmet>
 
-            <Header>
-                <div className={classes.headerNav}>
-                    <div>{LOGO_NAME}</div>
-                    <div className="flex gap-2">
-                        <Search strokeWidth={1} />
+            <header className={classes.header}>
+                <div>
+                    <div className="text-white">{LOGO_NAME}</div>
+                    <div className={classes.button}>
                         <CartIcon />
                     </div>
                 </div>
-            </Header>
+                <div className={classes.search}>
+                    <Search color="#825a3d" />
+                    <input placeholder="검색어를 입력해주세요." />
+                </div>
+            </header>
 
             <main className="h-full">
                 <EventCarousel />
@@ -81,18 +82,12 @@ export const HomePage: React.FC = () => {
                 <RecentProducts />
             </main>
 
-            <Footer className="text-white">
-                <div className={classes.navButton} onClick={() => navigate(`/products`)}>
-                    <CategoryIcon>리스트</CategoryIcon>
-                </div>
+            <Footer>
+                <CategoryIcon>리스트</CategoryIcon>
 
-                <div className={classes.navButton} onClick={() => navigate(`/`)}>
-                    <HomeIcon>홈</HomeIcon>
-                </div>
+                <HomeIcon>홈</HomeIcon>
 
-                <div className={classes.navButton} onClick={() => navigate(`/profile`)}>
-                    <ProfileIcon>마이</ProfileIcon>
-                </div>
+                <ProfileIcon>마이</ProfileIcon>
             </Footer>
         </>
     );

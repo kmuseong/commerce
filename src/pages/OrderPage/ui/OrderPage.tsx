@@ -28,7 +28,7 @@ export const OrderPage: React.FC = () => {
                 <link rel="canonical" href={`${import.meta.env.VITE_WEB_SITE_URL}/order`} />
             </Helmet>
 
-            <Header>
+            <Header isSpace>
                 <div className={classes.nav}>
                     <BackIcon />
                     주문서
