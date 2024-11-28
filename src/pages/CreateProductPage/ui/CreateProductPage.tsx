@@ -4,6 +4,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { LOGO_NAME } from '@/shared/config/constants';
 import { BackIcon } from '@/widgets/icon';
+import { Header } from '@/widgets/header';
 
 export const CreateProductPage: React.FC = () => {
     return (
@@ -13,10 +14,13 @@ export const CreateProductPage: React.FC = () => {
                 <link rel="canonical" href={`${import.meta.env.VITE_WEB_SITE_URL}/create`} />
             </Helmet>
 
-            <header className={classes.header}>
-                <BackIcon />
-                상품추가
-            </header>
+            <Header isSpace>
+                <div className={classes.header}>
+                    <BackIcon />
+                    상품추가
+                </div>
+            </Header>
+
             <CreateProductForm />
         </>
     );

@@ -3,7 +3,6 @@ import React from 'react';
 import classes from './ProductDetailPage.module.css';
 import { Button } from '@/shared/components/ui/button';
 import { useAuthStore } from '@/shared/stores/auth/useAuthStore';
-import { Search } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { getProduct, onDeleteProduct } from '@/pages/ProductDetailPage/api/api';
@@ -65,11 +64,14 @@ export const ProductDetailPage: React.FC = () => {
                 <div className={classes.nav}>
                     <BackIcon />
 
-                    <div className={classes.list}>
-                        <Search />
-                        <HomeIcon />
-                        <CartIcon />
-                    </div>
+                    <ul className={classes.list}>
+                        <li>
+                            <HomeIcon isBorder />
+                        </li>
+                        <li>
+                            <CartIcon isBorder />
+                        </li>
+                    </ul>
                 </div>
             </Header>
 

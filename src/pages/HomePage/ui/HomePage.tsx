@@ -6,7 +6,7 @@ import { Search } from 'lucide-react';
 import classes from './HomePage.module.css';
 import { EventCarousel } from '@/features/eventCarousel';
 import { RecentProducts } from '@/features/recentProducts';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { CartIcon } from '@/widgets/cartIcon';
 import { Helmet } from 'react-helmet-async';
 import { LOGO_NAME } from '@/shared/config/constants';
@@ -16,7 +16,6 @@ import { CategoryIcon, ProfileIcon } from '@/widgets/icon/ui/Icon';
 
 export const HomePage: React.FC = () => {
     const { user, setUser } = useAuthStore();
-    const navigate = useNavigate();
 
     useEffect(() => {
         const checkSession = async () => {
@@ -66,7 +65,7 @@ export const HomePage: React.FC = () => {
                 </div>
                 <div className={classes.search}>
                     <Search color="#825a3d" />
-                    <input />
+                    <input placeholder="검색어를 입력해주세요." />
                 </div>
             </header>
 
@@ -84,17 +83,11 @@ export const HomePage: React.FC = () => {
             </main>
 
             <Footer>
-                <div className={classes.navButton} onClick={() => navigate(`/products`)}>
-                    <CategoryIcon>리스트</CategoryIcon>
-                </div>
+                <CategoryIcon>리스트</CategoryIcon>
 
-                <div className={classes.navButton} onClick={() => navigate(`/`)}>
-                    <HomeIcon>홈</HomeIcon>
-                </div>
+                <HomeIcon>홈</HomeIcon>
 
-                <div className={classes.navButton} onClick={() => navigate(`/profile`)}>
-                    <ProfileIcon>마이</ProfileIcon>
-                </div>
+                <ProfileIcon>마이</ProfileIcon>
             </Footer>
         </>
     );

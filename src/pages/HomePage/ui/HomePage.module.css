@@ -10,10 +10,6 @@
 .navButton {
     @apply flex flex-col gap-1 justify-center items-center;
     cursor: pointer;
-
-    div {
-        font-size: 10px;
-    }
 }
 
 .title {

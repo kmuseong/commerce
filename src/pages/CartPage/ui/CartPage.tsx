@@ -51,14 +51,16 @@ export const CartPage: React.FC = () => {
                 <link rel="canonical" href={`${import.meta.env.VITE_WEB_SITE_URL}/cart`} />
             </Helmet>
 
-            <Header>
+            <Header isSpace>
                 <div className={classes.header}>
                     <div className={classes['header-title']}>
                         <BackIcon />
                         <div>장바구니</div>
                     </div>
 
-                    <HomeIcon />
+                    <div>
+                        <HomeIcon isBorder />
+                    </div>
                 </div>
                 {data && <div className={classes['cart-count']}>전체 {data?.length}</div>}
             </Header>

@@ -1,11 +1,6 @@
 .header {
-    @apply p-3 flex gap-2;
-    background-color: rgb(242, 242, 242);
+    @apply flex gap-5 items-center;
     font-weight: bold;
-
-    svg {
-        cursor: pointer;
-    }
 }
 
 .layout {
